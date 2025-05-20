@@ -1,4 +1,4 @@
-import { users, properties, propertyImages, propertyFeatures, messages, offers, premiumTransactions } from "@shared/schema";
+import { users, properties, propertyImages, propertyFeatures, messages, offers, premiumTransactions } from "./shared/schema.js";
 import { db } from "./db"; // Updated import path
 import { eq, and, desc, like, or, gte, lte, sql } from "drizzle-orm";
 export class DatabaseStorage {

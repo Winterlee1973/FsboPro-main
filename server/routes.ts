@@ -10,7 +10,7 @@ import {
   insertPropertyFeatureSchema,
   insertMessageSchema,
   insertOfferSchema
-} from "@shared/schema";
+} from "../functions/src/shared/schema";
 
 // Initialize Stripe if secret key is available
 let stripe: Stripe | undefined;

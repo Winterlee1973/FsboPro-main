@@ -4,13 +4,15 @@ import { storage } from "./storage";
 import { setupAuth, isAuthenticated } from "./firebaseAuth";
 import Stripe from "stripe";
 import { z } from "zod";
-import {
+const schema = require("./shared/schema");
+
+const {
   insertPropertySchema,
   insertPropertyImageSchema,
   insertPropertyFeatureSchema,
   insertMessageSchema,
   insertOfferSchema
-} from "./shared/schema.js";
+} = schema;
 
 // Initialize Stripe if secret key is available
 let stripe: Stripe | undefined;

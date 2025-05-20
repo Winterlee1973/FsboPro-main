@@ -20,7 +20,9 @@ import {
   type InsertOffer,
   type PremiumTransaction,
   type InsertPremiumTransaction
-} from "@shared/schema";
+} from "../functions/src/shared/schema";
+import { db } from "./db";
+import { eq, and, desc, like, inArray, or, gte, lte, isNull } from "drizzle-orm";
 import { db } from "./db";
 import { eq, and, desc, like, inArray, or, gte, lte, isNull } from "drizzle-orm";
 
@@ -158,7 +160,7 @@ export class DatabaseStorage implements IStorage {
     const result = await db
       .delete(properties)
       .where(eq(properties.id, id));
-    return result.count > 0;
+    return result.rowCount > 0;
   }
 
   async getFeaturedProperties(limit: number = 6): Promise<Property[]> {
@@ -278,7 +280,7 @@ export class DatabaseStorage implements IStorage {
     const result = await db
       .delete(propertyImages)
       .where(eq(propertyImages.id, id));
-    return result.count > 0;
+    return result.rowCount > 0;
   }
 
   // Property features operations
@@ -301,7 +303,7 @@ export class DatabaseStorage implements IStorage {
     const result = await db
       .delete(propertyFeatures)
       .where(eq(propertyFeatures.id, id));
-    return result.count > 0;
+    return result.rowCount > 0;
   }
 
   // Message operations

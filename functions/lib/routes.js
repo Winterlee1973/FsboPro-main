@@ -1,7 +1,7 @@
 import { storage } from "./storage";
 import { setupAuth, isAuthenticated } from "./firebaseAuth";
 import Stripe from "stripe";
-import { insertPropertySchema, insertPropertyImageSchema, insertPropertyFeatureSchema, insertMessageSchema, insertOfferSchema } from "@shared/schema";
+import { insertPropertySchema, insertPropertyImageSchema, insertPropertyFeatureSchema, insertMessageSchema, insertOfferSchema } from "./shared/schema.js";
 // Initialize Stripe if secret key is available
 let stripe;
 if (process.env.STRIPE_SECRET_KEY) {

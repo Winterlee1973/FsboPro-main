@@ -1,4 +1,6 @@
-import {
+const schema = require("./shared/schema");
+
+const {
   users,
   properties,
   propertyImages,
@@ -6,72 +8,72 @@ import {
   messages,
   offers,
   premiumTransactions,
-  type User,
-  type UpsertUser,
-  type Property,
-  type InsertProperty,
-  type PropertyImage,
-  type InsertPropertyImage,
-  type PropertyFeature,
-  type InsertPropertyFeature,
-  type Message,
-  type InsertMessage,
-  type Offer,
-  type InsertOffer,
-  type PremiumTransaction,
-  type InsertPremiumTransaction
-} from "./shared/schema.js";
+  User,
+  UpsertUser,
+  Property,
+  InsertProperty,
+  PropertyImage,
+  InsertPropertyImage,
+  PropertyFeature,
+  InsertPropertyFeature,
+  Message,
+  InsertMessage,
+  Offer,
+  InsertOffer,
+  PremiumTransaction,
+  InsertPremiumTransaction
+} = schema;
 import { db } from "./db"; // Updated import path
 import { eq, and, desc, like, inArray, or, gte, lte, isNull, sql } from "drizzle-orm";
 
 // Interface for storage operations
 export interface IStorage {
   // User operations
-  getUser(id: string): Promise<User | undefined>;
-  getUserByEmail(email: string): Promise<User | undefined>;
-  upsertUser(user: UpsertUser): Promise<User>;
-  updateUserType(id: string, userType: string): Promise<User | undefined>;
-  updateStripeCustomerId(userId: string, customerId: string): Promise<User>;
+  getUser(id: string): Promise<typeof User | undefined>;
+  getUserByEmail(email: string): Promise<typeof User | undefined>;
+  upsertUser(user: typeof UpsertUser): Promise<typeof User>;
+  updateUserType(id: string, userType: string): Promise<typeof User | undefined>;
+  updateStripeCustomerId(userId: string, customerId: string): Promise<typeof User>;
 
   // Property operations
-  createProperty(property: InsertProperty): Promise<Property>;
-  getProperty(id: number): Promise<Property | undefined>;
-  getUserProperties(userId: string): Promise<Property[]>;
-  updateProperty(id: number, property: Partial<InsertProperty>): Promise<Property | undefined>;
+  createProperty(property: typeof InsertProperty): Promise<typeof Property>;
+  getProperty(id: number): Promise<typeof Property | undefined>;
+  getUserProperties(userId: string): Promise<typeof Property[]>;
+  updateProperty(id: number, property: Partial<typeof InsertProperty>): Promise<typeof Property | undefined>;
   deleteProperty(id: number): Promise<boolean>;
-  getFeaturedProperties(limit?: number): Promise<Property[]>;
-  searchProperties(query: any): Promise<Property[]>;
+  getFeaturedProperties(limit?: number): Promise<typeof Property[]>;
+  searchProperties(query: any): Promise<typeof Property[]>;
   incrementPropertyViews(id: number): Promise<void>;
-  setPremiumStatus(id: number, isPremium: boolean, premiumUntil?: Date): Promise<Property | undefined>;
+  setPremiumStatus(id: number, isPremium: boolean, premiumUntil?: Date): Promise<typeof Property | undefined>;
 
   // Property images operations
-  addPropertyImage(image: InsertPropertyImage): Promise<PropertyImage>;
-  getPropertyImages(propertyId: number): Promise<PropertyImage[]>;
+  addPropertyImage(image: typeof InsertPropertyImage): Promise<typeof PropertyImage>;
+  getPropertyImages(propertyId: number): Promise<typeof PropertyImage[]>;
   deletePropertyImage(id: number): Promise<boolean>;
 
   // Property features operations
-  addPropertyFeature(feature: InsertPropertyFeature): Promise<PropertyFeature>;
-  getPropertyFeatures(propertyId: number): Promise<PropertyFeature[]>;
+  addPropertyFeature(feature: typeof InsertPropertyFeature): Promise<typeof PropertyFeature>;
+  getPropertyFeatures(propertyId: number): Promise<typeof PropertyFeature[]>;
   deletePropertyFeature(id: number): Promise<boolean>;
 
   // Message operations
-  createMessage(message: InsertMessage): Promise<Message>;
-  getUserMessages(userId: string): Promise<Message[]>;
-  getPropertyMessages(propertyId: number): Promise<Message[]>;
-  getConversation(user1Id: string, user2Id: string, propertyId: number): Promise<Message[]>;
+  createMessage(message: typeof InsertMessage): Promise<typeof Message>;
+  getUserMessages(userId: string): Promise<typeof Message[]>;
+  getPropertyMessages(propertyId: number): Promise<typeof Message[]>;
+  getConversation(user1Id: string, user2Id: string, propertyId: number): Promise<typeof Message[]>;
   markMessageAsRead(id: number): Promise<boolean>;
 
   // Offer operations
-  createOffer(offer: InsertOffer): Promise<Offer>;
-  getPropertyOffers(propertyId: number): Promise<Offer[]>;
-  getUserOffers(userId: string): Promise<Offer[]>;
-  updateOfferStatus(id: number, status: string): Promise<Offer | undefined>;
-  getOffer(id: number): Promise<Offer | undefined>; // Added missing method
-  markPropertyAsPremium(propertyId: number): Promise<Property | undefined>; // Added missing method
+  createOffer(offer: typeof InsertOffer): Promise<typeof Offer>;
+  getPropertyOffers(propertyId: number): Promise<typeof Offer[]>;
+  getUserOffers(userId: string): Promise<typeof Offer[]>;
+  updateOfferStatus(id: number, status: string): Promise<typeof Offer | undefined>;
+  getOffer(id: number): Promise<typeof Offer | undefined>; // Added missing method
+  markPropertyAsPremium(propertyId: number): Promise<typeof Property | undefined>; // Added missing method
 
   // Premium transaction operations
-  recordPremiumTransaction(transaction: InsertPremiumTransaction): Promise<PremiumTransaction>;
-  getUserTransactions(userId: string): Promise<PremiumTransaction[]>;
+  recordPremiumTransaction(transaction: typeof InsertPremiumTransaction): Promise<typeof PremiumTransaction>;
+  getUserTransactions(userId: string): Promise<typeof PremiumTransaction[]>;
 }
 
 export class DatabaseStorage implements IStorage {
