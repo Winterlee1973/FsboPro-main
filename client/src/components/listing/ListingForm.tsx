@@ -6,7 +6,7 @@ import { useToast } from "@/hooks/use-toast";
 import { apiRequest, queryClient } from "@/lib/queryClient";
 import { useAuth } from "@/hooks/useAuth";
 import { useLocation } from "wouter";
-import { insertPropertySchema } from "@shared/schema";
+import { insertPropertySchema } from "../../../../functions/schema";
 import {
   Form,
   FormControl,
