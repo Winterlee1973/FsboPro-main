@@ -1,0 +1,173 @@
+[debug] [2025-05-20T15:27:07.369Z] ----------------------------------------------------------------------
+[debug] [2025-05-20T15:27:07.371Z] Command:       /opt/homebrew/Cellar/node/23.11.0/bin/node /opt/homebrew/bin/firebase emulators:start --only hosting,functions
+[debug] [2025-05-20T15:27:07.371Z] CLI Version:   14.4.0
+[debug] [2025-05-20T15:27:07.371Z] Platform:      darwin
+[debug] [2025-05-20T15:27:07.371Z] Node Version:  v23.11.0
+[debug] [2025-05-20T15:27:07.371Z] Time:          Tue May 20 2025 11:27:07 GMT-0400 (Eastern Daylight Time)
+[debug] [2025-05-20T15:27:07.371Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2025-05-20T15:27:07.474Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-05-20T15:27:07.474Z] > authorizing via signed-in user (lee@start341.com)
+[info] i  emulators: Starting emulators: functions, hosting {"metadata":{"emulator":{"name":"hub"},"message":"Starting emulators: functions, hosting"}}
+[debug] [2025-05-20T15:27:07.775Z] [logging] Logging Emulator only supports listening on one address (127.0.0.1). Not listening on ::1
+[warn] ⚠  hosting: Hosting Emulator unable to start on port 5000, starting on 5002 instead. {"metadata":{"emulator":{"name":"hosting"},"message":"Hosting Emulator unable to start on port 5000, starting on 5002 instead."}}
+[debug] [2025-05-20T15:27:07.775Z] [hosting] Hosting Emulator only supports listening on one address (127.0.0.1). Not listening on ::1
+[debug] [2025-05-20T15:27:07.775Z] assigned listening specs for emulators {"user":{"hub":[{"address":"127.0.0.1","family":"IPv4","port":4400},{"address":"::1","family":"IPv6","port":4400}],"ui":[{"address":"127.0.0.1","family":"IPv4","port":4000},{"address":"::1","family":"IPv6","port":4000}],"logging":[{"address":"127.0.0.1","family":"IPv4","port":4500}],"hosting":[{"address":"127.0.0.1","family":"IPv4","port":5002}]},"metadata":{"message":"assigned listening specs for emulators"}}
+[debug] [2025-05-20T15:27:07.778Z] [hub] writing locator at /var/folders/c_/5gf1fsvj2x7cjb1b9dhfctvw0000gn/T/hub-start341-portfolio-showcase.json
+[debug] [2025-05-20T15:27:07.980Z] [functions] Functions Emulator only supports listening on one address (127.0.0.1). Not listening on ::1
+[debug] [2025-05-20T15:27:07.980Z] [eventarc] Eventarc Emulator only supports listening on one address (127.0.0.1). Not listening on ::1
+[debug] [2025-05-20T15:27:07.980Z] [tasks] Cloud Tasks Emulator only supports listening on one address (127.0.0.1). Not listening on ::1
+[debug] [2025-05-20T15:27:07.980Z] late-assigned ports for functions and eventarc emulators {"user":{"hub":[{"address":"127.0.0.1","family":"IPv4","port":4400},{"address":"::1","family":"IPv6","port":4400}],"ui":[{"address":"127.0.0.1","family":"IPv4","port":4000},{"address":"::1","family":"IPv6","port":4000}],"logging":[{"address":"127.0.0.1","family":"IPv4","port":4500}],"hosting":[{"address":"127.0.0.1","family":"IPv4","port":5002}],"functions":[{"address":"127.0.0.1","family":"IPv4","port":5001}],"eventarc":[{"address":"127.0.0.1","family":"IPv4","port":9299}],"tasks":[{"address":"127.0.0.1","family":"IPv4","port":9499}]},"metadata":{"message":"late-assigned ports for functions and eventarc emulators"}}
+[warn] ⚠  functions: The following emulators are not running, calls to these services from the Functions emulator will affect production: apphosting, auth, firestore, database, pubsub, storage, dataconnect {"metadata":{"emulator":{"name":"functions"},"message":"The following emulators are not running, calls to these services from the Functions emulator will affect production: \u001b[1mapphosting, auth, firestore, database, pubsub, storage, dataconnect\u001b[22m"}}
+[debug] [2025-05-20T15:27:07.984Z] defaultcredentials: writing to file /Users/leecarlin/.config/firebase/lee_start341_com_application_default_credentials.json
+[debug] [2025-05-20T15:27:07.986Z] Setting GAC to /Users/leecarlin/.config/firebase/lee_start341_com_application_default_credentials.json {"metadata":{"emulator":{"name":"functions"},"message":"Setting GAC to /Users/leecarlin/.config/firebase/lee_start341_com_application_default_credentials.json"}}
+[debug] [2025-05-20T15:27:07.987Z] Checked if tokens are valid: true, expires at: 1747757037445
+[debug] [2025-05-20T15:27:07.987Z] Checked if tokens are valid: true, expires at: 1747757037445
+[debug] [2025-05-20T15:27:07.987Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/start341-portfolio-showcase/adminSdkConfig [none]
+[debug] [2025-05-20T15:27:08.419Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/start341-portfolio-showcase/adminSdkConfig 200
+[debug] [2025-05-20T15:27:08.419Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/start341-portfolio-showcase/adminSdkConfig {"projectId":"start341-portfolio-showcase","storageBucket":"start341-portfolio-showcase.firebasestorage.app"}
+[debug] [2025-05-20T15:27:08.437Z] Checked if tokens are valid: true, expires at: 1747757037445
+[debug] [2025-05-20T15:27:08.437Z] Checked if tokens are valid: true, expires at: 1747757037445
+[debug] [2025-05-20T15:27:08.437Z] >>> [apiv2][query] GET https://firebasehosting.googleapis.com/v1beta1/projects/start341-portfolio-showcase/sites 
+[debug] [2025-05-20T15:27:08.886Z] <<< [apiv2][status] GET https://firebasehosting.googleapis.com/v1beta1/projects/start341-portfolio-showcase/sites 200
+[debug] [2025-05-20T15:27:08.886Z] <<< [apiv2][body] GET https://firebasehosting.googleapis.com/v1beta1/projects/start341-portfolio-showcase/sites {"sites":[{"name":"projects/start341-portfolio-showcase/sites/start341-portfolio-showcase","defaultUrl":"https://start341-portfolio-showcase.web.app","appId":"1:478987048457:web:823b1f412de980af864ad8","type":"DEFAULT_SITE"}]}
+[debug] [2025-05-20T15:27:08.886Z] Checked if tokens are valid: true, expires at: 1747757037445
+[debug] [2025-05-20T15:27:08.886Z] Checked if tokens are valid: true, expires at: 1747757037445
+[debug] [2025-05-20T15:27:08.887Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/start341-portfolio-showcase/webApps/1:478987048457:web:823b1f412de980af864ad8/config [none]
+[debug] [2025-05-20T15:27:09.341Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/start341-portfolio-showcase/webApps/1:478987048457:web:823b1f412de980af864ad8/config 200
+[debug] [2025-05-20T15:27:09.341Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/start341-portfolio-showcase/webApps/1:478987048457:web:823b1f412de980af864ad8/config {"projectId":"start341-portfolio-showcase","appId":"1:478987048457:web:823b1f412de980af864ad8","storageBucket":"start341-portfolio-showcase.firebasestorage.app","apiKey":"AIzaSyCaBkgesQBFGI7HhXgNj5s7Xz9U_4m5D_s","authDomain":"start341-portfolio-showcase.firebaseapp.com","messagingSenderId":"478987048457","measurementId":"G-8TTWY6TPLT"}
+[debug] [2025-05-20T15:27:09.351Z] Checked if tokens are valid: true, expires at: 1747757037445
+[debug] [2025-05-20T15:27:09.351Z] Checked if tokens are valid: true, expires at: 1747757037445
+[debug] [2025-05-20T15:27:09.352Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/start341-portfolio-showcase [none]
+[debug] [2025-05-20T15:27:09.569Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/start341-portfolio-showcase 200
+[debug] [2025-05-20T15:27:09.570Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/start341-portfolio-showcase {"projectId":"start341-portfolio-showcase","projectNumber":"478987048457","displayName":"Start341 Portfolio Showcase","name":"projects/start341-portfolio-showcase","resources":{"hostingSite":"start341-portfolio-showcase"},"state":"ACTIVE","etag":"1_ca4ae33d-4385-4d30-a1ff-72fd8e885e18"}
+[info] i  hosting[start341-portfolio-showcase]: Serving hosting files from: dist {"metadata":{"emulator":{"name":"hosting"},"message":"Serving hosting files from: \u001b[1mdist\u001b[22m"}}
+[info] ✔  hosting[start341-portfolio-showcase]: Local server: http://127.0.0.1:5002 {"metadata":{"emulator":{"name":"hosting"},"message":"Local server: \u001b[4m\u001b[1mhttp://127.0.0.1:5002\u001b[22m\u001b[24m"}}
+[info] i  functions: Watching "/Users/leecarlin/Documents/FsboPro-main/functions" for Cloud Functions... {"metadata":{"emulator":{"name":"functions"},"message":"Watching \"/Users/leecarlin/Documents/FsboPro-main/functions\" for Cloud Functions..."}}
+[debug] [2025-05-20T15:27:09.645Z] Validating nodejs source
+[warn] ⚠  functions: Couldn't find firebase-functions package in your source code. Have you run 'npm install'? 
+[debug] [2025-05-20T15:27:09.645Z] getFunctionsSDKVersion encountered error: Cannot find module 'firebase-functions'
+Require stack:
+- /opt/homebrew/lib/node_modules/firebase-tools/lib/deploy/functions/runtimes/node/versioning.js
+- /opt/homebrew/lib/node_modules/firebase-tools/lib/deploy/functions/runtimes/node/index.js
+- /opt/homebrew/lib/node_modules/firebase-tools/lib/deploy/functions/runtimes/index.js
+- /opt/homebrew/lib/node_modules/firebase-tools/lib/deploy/functions/prepare.js
+- /opt/homebrew/lib/node_modules/firebase-tools/lib/emulator/functionsEmulatorShared.js
+- /opt/homebrew/lib/node_modules/firebase-tools/lib/emulator/functionsEmulator.js
+- /opt/homebrew/lib/node_modules/firebase-tools/lib/emulator/controller.js
+- /opt/homebrew/lib/node_modules/firebase-tools/lib/emulator/commandUtils.js
+- /opt/homebrew/lib/node_modules/firebase-tools/lib/commands/database-get.js
+- /opt/homebrew/lib/node_modules/firebase-tools/lib/commands/index.js
+- /opt/homebrew/lib/node_modules/firebase-tools/lib/index.js
+- /opt/homebrew/lib/node_modules/firebase-tools/lib/bin/cli.js
+- /opt/homebrew/lib/node_modules/firebase-tools/lib/bin/firebase.js {"code":"MODULE_NOT_FOUND","requireStack":["/opt/homebrew/lib/node_modules/firebase-tools/lib/deploy/functions/runtimes/node/versioning.js","/opt/homebrew/lib/node_modules/firebase-tools/lib/deploy/functions/runtimes/node/index.js","/opt/homebrew/lib/node_modules/firebase-tools/lib/deploy/functions/runtimes/index.js","/opt/homebrew/lib/node_modules/firebase-tools/lib/deploy/functions/prepare.js","/opt/homebrew/lib/node_modules/firebase-tools/lib/emulator/functionsEmulatorShared.js","/opt/homebrew/lib/node_modules/firebase-tools/lib/emulator/functionsEmulator.js","/opt/homebrew/lib/node_modules/firebase-tools/lib/emulator/controller.js","/opt/homebrew/lib/node_modules/firebase-tools/lib/emulator/commandUtils.js","/opt/homebrew/lib/node_modules/firebase-tools/lib/commands/database-get.js","/opt/homebrew/lib/node_modules/firebase-tools/lib/commands/index.js","/opt/homebrew/lib/node_modules/firebase-tools/lib/index.js","/opt/homebrew/lib/node_modules/firebase-tools/lib/bin/cli.js","/opt/homebrew/lib/node_modules/firebase-tools/lib/bin/firebase.js"]}
+[debug] [2025-05-20T15:27:09.646Z] checkFunctionsSDKVersion encountered error: Invalid Version:  {}
+[debug] [2025-05-20T15:27:09.646Z] > [functions] package.json contents: {
+  "name": "functions",
+  "engines": {
+    "node": "18"
+  },
+  "main": "lib/index.js",
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc -w",
+    "deploy": "firebase deploy --only functions"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "firebase-admin": "^12.0.0",
+    "firebase-functions": "^4.4.1"
+  },
+  "devDependencies": {
+    "typescript": "^5.4.0"
+  }
+}
+[error] ⬢  functions: Failed to load function definition from source: FirebaseError: There was an error reading functions/package.json:
+
+ functions/lib/index.js does not exist, can't deploy Cloud Functions {"metadata":{"emulator":{"name":"functions"},"message":"Failed to load function definition from source: FirebaseError: There was an error reading functions/package.json:\n\n functions/lib/index.js does not exist, can't deploy Cloud Functions"}}
+[debug] [2025-05-20T15:27:09.648Z] Could not find VSCode notification endpoint: FetchError: request to http://localhost:40001/vscode/notify failed, reason: . If you are not running the Firebase Data Connect VSCode extension, this is expected and not an issue.
+[info] 
+┌─────────────────────────────────────────────────────────────┐
+│ ✔  All emulators ready! It is now safe to connect your app. │
+│ i  View Emulator UI at http://127.0.0.1:4000/               │
+└─────────────────────────────────────────────────────────────┘
+
+┌───────────┬────────────────┬─────────────────────────────────┐
+│ Emulator  │ Host:Port      │ View in Emulator UI             │
+├───────────┼────────────────┼─────────────────────────────────┤
+│ Functions │ 127.0.0.1:5001 │ http://127.0.0.1:4000/functions │
+├───────────┼────────────────┼─────────────────────────────────┤
+│ Hosting   │ 127.0.0.1:5002 │ n/a                             │
+└───────────┴────────────────┴─────────────────────────────────┘
+  Emulator Hub host: 127.0.0.1 port: 4400
+  Other reserved ports: 4500
+
+Issues? Report them at https://github.com/firebase/firebase-tools/issues and attach the *-debug.log files.
+ 
+[info] i  hosting: 127.0.0.1 - - [20/May/2025:15:27:35 +0000] "GET / HTTP/1.1" 200 625 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36" {"metadata":{"emulator":{"name":"hosting"},"message":"127.0.0.1 - - [20/May/2025:15:27:35 +0000] \"GET / HTTP/1.1\" 200 625 \"-\" \"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36\""}}
+[info] i  hosting: 127.0.0.1 - - [20/May/2025:15:27:35 +0000] "GET /assets/index-g6F_llE1.css HTTP/1.1" 200 - "http://127.0.0.1:5002/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36" {"metadata":{"emulator":{"name":"hosting"},"message":"127.0.0.1 - - [20/May/2025:15:27:35 +0000] \"GET /assets/index-g6F_llE1.css HTTP/1.1\" 200 - \"http://127.0.0.1:5002/\" \"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36\""}}
+[info] i  hosting: 127.0.0.1 - - [20/May/2025:15:27:35 +0000] "GET /assets/index-CYbJFggZ.js HTTP/1.1" 200 - "http://127.0.0.1:5002/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36" {"metadata":{"emulator":{"name":"hosting"},"message":"127.0.0.1 - - [20/May/2025:15:27:35 +0000] \"GET /assets/index-CYbJFggZ.js HTTP/1.1\" 200 - \"http://127.0.0.1:5002/\" \"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36\""}}
+[info] [hosting] Rewriting /api/auth/user to http://127.0.0.1:5001/start341-portfolio-showcase/us-central1/api for local Function us-central1/api
+[debug] [2025-05-20T15:27:35.739Z] >>> [apiv2][query] GET http://127.0.0.1:5001/start341-portfolio-showcase/us-central1/api/api/auth/user 
+[info] [hosting] Rewriting /api/properties/featured to http://127.0.0.1:5001/start341-portfolio-showcase/us-central1/api for local Function us-central1/api
+[debug] [2025-05-20T15:27:35.740Z] >>> [apiv2][query] GET http://127.0.0.1:5001/start341-portfolio-showcase/us-central1/api/api/properties/featured 
+[debug] [2025-05-20T15:27:35.743Z] [work-queue] {"queuedWork":["/start341-portfolio-showcase/us-central1/api/api/auth/user-2025-05-20T15:27:35.743Z"],"queueLength":1,"runningWork":[],"workRunningCount":0}
+[debug] [2025-05-20T15:27:35.743Z] [work-queue] {"queuedWork":[],"queueLength":0,"runningWork":["/start341-portfolio-showcase/us-central1/api/api/auth/user-2025-05-20T15:27:35.743Z"],"workRunningCount":1}
+[debug] [2025-05-20T15:27:35.744Z] [work-queue] {"queuedWork":[],"queueLength":0,"runningWork":[],"workRunningCount":0}
+[debug] [2025-05-20T15:27:35.745Z] <<< [apiv2][status] GET http://127.0.0.1:5001/start341-portfolio-showcase/us-central1/api/api/auth/user 404
+[debug] [2025-05-20T15:27:35.745Z] <<< [apiv2][body] GET http://127.0.0.1:5001/start341-portfolio-showcase/us-central1/api/api/auth/user [stream]
+[info] i  hosting: 127.0.0.1 - - [20/May/2025:15:27:35 +0000] "GET /api/auth/user HTTP/1.1" 404 62 "http://127.0.0.1:5002/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36" {"metadata":{"emulator":{"name":"hosting"},"message":"127.0.0.1 - - [20/May/2025:15:27:35 +0000] \"GET /api/auth/user HTTP/1.1\" 404 62 \"http://127.0.0.1:5002/\" \"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36\""}}
+[debug] [2025-05-20T15:27:35.747Z] [work-queue] {"queuedWork":["/start341-portfolio-showcase/us-central1/api/api/properties/featured-2025-05-20T15:27:35.747Z"],"queueLength":1,"runningWork":[],"workRunningCount":0}
+[debug] [2025-05-20T15:27:35.747Z] [work-queue] {"queuedWork":[],"queueLength":0,"runningWork":["/start341-portfolio-showcase/us-central1/api/api/properties/featured-2025-05-20T15:27:35.747Z"],"workRunningCount":1}
+[debug] [2025-05-20T15:27:35.747Z] [work-queue] {"queuedWork":[],"queueLength":0,"runningWork":[],"workRunningCount":0}
+[debug] [2025-05-20T15:27:35.748Z] <<< [apiv2][status] GET http://127.0.0.1:5001/start341-portfolio-showcase/us-central1/api/api/properties/featured 404
+[debug] [2025-05-20T15:27:35.748Z] <<< [apiv2][body] GET http://127.0.0.1:5001/start341-portfolio-showcase/us-central1/api/api/properties/featured [stream]
+[info] i  hosting: 127.0.0.1 - - [20/May/2025:15:27:35 +0000] "GET /api/properties/featured HTTP/1.1" 404 62 "http://127.0.0.1:5002/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36" {"metadata":{"emulator":{"name":"hosting"},"message":"127.0.0.1 - - [20/May/2025:15:27:35 +0000] \"GET /api/properties/featured HTTP/1.1\" 404 62 \"http://127.0.0.1:5002/\" \"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36\""}}
+[info] i  hosting: 127.0.0.1 - - [20/May/2025:15:27:35 +0000] "GET /favicon.ico HTTP/1.1" 200 625 "http://127.0.0.1:5002/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36" {"metadata":{"emulator":{"name":"hosting"},"message":"127.0.0.1 - - [20/May/2025:15:27:35 +0000] \"GET /favicon.ico HTTP/1.1\" 200 625 \"http://127.0.0.1:5002/\" \"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36\""}}
+[debug] [2025-05-20T15:27:44.235Z] Functions emulator received unknown request at path /
+[info] i  hosting: 127.0.0.1 - - [20/May/2025:15:27:48 +0000] "GET / HTTP/1.1" 200 625 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36" {"metadata":{"emulator":{"name":"hosting"},"message":"127.0.0.1 - - [20/May/2025:15:27:48 +0000] \"GET / HTTP/1.1\" 200 625 \"-\" \"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36\""}}
+[info] i  hosting: 127.0.0.1 - - [20/May/2025:15:27:48 +0000] "GET /assets/index-g6F_llE1.css HTTP/1.1" 200 - "http://127.0.0.1:5002/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36" {"metadata":{"emulator":{"name":"hosting"},"message":"127.0.0.1 - - [20/May/2025:15:27:48 +0000] \"GET /assets/index-g6F_llE1.css HTTP/1.1\" 200 - \"http://127.0.0.1:5002/\" \"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36\""}}
+[info] i  hosting: 127.0.0.1 - - [20/May/2025:15:27:48 +0000] "GET /assets/index-CYbJFggZ.js HTTP/1.1" 200 - "http://127.0.0.1:5002/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36" {"metadata":{"emulator":{"name":"hosting"},"message":"127.0.0.1 - - [20/May/2025:15:27:48 +0000] \"GET /assets/index-CYbJFggZ.js HTTP/1.1\" 200 - \"http://127.0.0.1:5002/\" \"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36\""}}
+[info] [hosting] Rewriting /api/auth/user to http://127.0.0.1:5001/start341-portfolio-showcase/us-central1/api for local Function us-central1/api
+[debug] [2025-05-20T15:27:48.251Z] >>> [apiv2][query] GET http://127.0.0.1:5001/start341-portfolio-showcase/us-central1/api/api/auth/user 
+[info] [hosting] Rewriting /api/properties/featured to http://127.0.0.1:5001/start341-portfolio-showcase/us-central1/api for local Function us-central1/api
+[debug] [2025-05-20T15:27:48.253Z] >>> [apiv2][query] GET http://127.0.0.1:5001/start341-portfolio-showcase/us-central1/api/api/properties/featured 
+[debug] [2025-05-20T15:27:48.254Z] [work-queue] {"queuedWork":["/start341-portfolio-showcase/us-central1/api/api/auth/user-2025-05-20T15:27:48.254Z"],"queueLength":1,"runningWork":[],"workRunningCount":0}
+[debug] [2025-05-20T15:27:48.255Z] [work-queue] {"queuedWork":[],"queueLength":0,"runningWork":["/start341-portfolio-showcase/us-central1/api/api/auth/user-2025-05-20T15:27:48.254Z"],"workRunningCount":1}
+[debug] [2025-05-20T15:27:48.255Z] [work-queue] {"queuedWork":[],"queueLength":0,"runningWork":[],"workRunningCount":0}
+[debug] [2025-05-20T15:27:48.256Z] <<< [apiv2][status] GET http://127.0.0.1:5001/start341-portfolio-showcase/us-central1/api/api/auth/user 404
+[debug] [2025-05-20T15:27:48.256Z] <<< [apiv2][body] GET http://127.0.0.1:5001/start341-portfolio-showcase/us-central1/api/api/auth/user [stream]
+[info] i  hosting: 127.0.0.1 - - [20/May/2025:15:27:48 +0000] "GET /api/auth/user HTTP/1.1" 404 62 "http://127.0.0.1:5002/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36" {"metadata":{"emulator":{"name":"hosting"},"message":"127.0.0.1 - - [20/May/2025:15:27:48 +0000] \"GET /api/auth/user HTTP/1.1\" 404 62 \"http://127.0.0.1:5002/\" \"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36\""}}
+[debug] [2025-05-20T15:27:48.257Z] [work-queue] {"queuedWork":["/start341-portfolio-showcase/us-central1/api/api/properties/featured-2025-05-20T15:27:48.257Z"],"queueLength":1,"runningWork":[],"workRunningCount":0}
+[debug] [2025-05-20T15:27:48.257Z] [work-queue] {"queuedWork":[],"queueLength":0,"runningWork":["/start341-portfolio-showcase/us-central1/api/api/properties/featured-2025-05-20T15:27:48.257Z"],"workRunningCount":1}
+[debug] [2025-05-20T15:27:48.257Z] [work-queue] {"queuedWork":[],"queueLength":0,"runningWork":[],"workRunningCount":0}
+[debug] [2025-05-20T15:27:48.258Z] <<< [apiv2][status] GET http://127.0.0.1:5001/start341-portfolio-showcase/us-central1/api/api/properties/featured 404
+[debug] [2025-05-20T15:27:48.258Z] <<< [apiv2][body] GET http://127.0.0.1:5001/start341-portfolio-showcase/us-central1/api/api/properties/featured [stream]
+[info] i  hosting: 127.0.0.1 - - [20/May/2025:15:27:48 +0000] "GET /api/properties/featured HTTP/1.1" 404 62 "http://127.0.0.1:5002/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36" {"metadata":{"emulator":{"name":"hosting"},"message":"127.0.0.1 - - [20/May/2025:15:27:48 +0000] \"GET /api/properties/featured HTTP/1.1\" 404 62 \"http://127.0.0.1:5002/\" \"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36\""}}
+[info] i  hosting: 127.0.0.1 - - [20/May/2025:15:27:48 +0000] "GET /favicon.ico HTTP/1.1" 304 - "http://127.0.0.1:5002/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36" {"metadata":{"emulator":{"name":"hosting"},"message":"127.0.0.1 - - [20/May/2025:15:27:48 +0000] \"GET /favicon.ico HTTP/1.1\" 304 - \"http://127.0.0.1:5002/\" \"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36\""}}
+[info] [hosting] Rewriting /api/login to http://127.0.0.1:5001/start341-portfolio-showcase/us-central1/api for local Function us-central1/api
+[debug] [2025-05-20T15:27:51.335Z] >>> [apiv2][query] GET http://127.0.0.1:5001/start341-portfolio-showcase/us-central1/api/api/login 
+[debug] [2025-05-20T15:27:51.337Z] [work-queue] {"queuedWork":["/start341-portfolio-showcase/us-central1/api/api/login-2025-05-20T15:27:51.337Z"],"queueLength":1,"runningWork":[],"workRunningCount":0}
+[debug] [2025-05-20T15:27:51.337Z] [work-queue] {"queuedWork":[],"queueLength":0,"runningWork":["/start341-portfolio-showcase/us-central1/api/api/login-2025-05-20T15:27:51.337Z"],"workRunningCount":1}
+[debug] [2025-05-20T15:27:51.338Z] [work-queue] {"queuedWork":[],"queueLength":0,"runningWork":[],"workRunningCount":0}
+[debug] [2025-05-20T15:27:51.339Z] <<< [apiv2][status] GET http://127.0.0.1:5001/start341-portfolio-showcase/us-central1/api/api/login 404
+[debug] [2025-05-20T15:27:51.339Z] <<< [apiv2][body] GET http://127.0.0.1:5001/start341-portfolio-showcase/us-central1/api/api/login [stream]
+[info] i  hosting: 127.0.0.1 - - [20/May/2025:15:27:51 +0000] "GET /api/login HTTP/1.1" 404 62 "http://127.0.0.1:5002/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36" {"metadata":{"emulator":{"name":"hosting"},"message":"127.0.0.1 - - [20/May/2025:15:27:51 +0000] \"GET /api/login HTTP/1.1\" 404 62 \"http://127.0.0.1:5002/\" \"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36\""}}
+[info] [hosting] Rewriting /api/auth/user to http://127.0.0.1:5001/start341-portfolio-showcase/us-central1/api for local Function us-central1/api
+[debug] [2025-05-20T15:28:01.120Z] >>> [apiv2][query] GET http://127.0.0.1:5001/start341-portfolio-showcase/us-central1/api/api/auth/user 
+[debug] [2025-05-20T15:28:01.122Z] [work-queue] {"queuedWork":["/start341-portfolio-showcase/us-central1/api/api/auth/user-2025-05-20T15:28:01.122Z"],"queueLength":1,"runningWork":[],"workRunningCount":0}
+[debug] [2025-05-20T15:28:01.122Z] [work-queue] {"queuedWork":[],"queueLength":0,"runningWork":["/start341-portfolio-showcase/us-central1/api/api/auth/user-2025-05-20T15:28:01.122Z"],"workRunningCount":1}
+[debug] [2025-05-20T15:28:01.123Z] [work-queue] {"queuedWork":[],"queueLength":0,"runningWork":[],"workRunningCount":0}
+[debug] [2025-05-20T15:28:01.124Z] <<< [apiv2][status] GET http://127.0.0.1:5001/start341-portfolio-showcase/us-central1/api/api/auth/user 404
+[debug] [2025-05-20T15:28:01.124Z] <<< [apiv2][body] GET http://127.0.0.1:5001/start341-portfolio-showcase/us-central1/api/api/auth/user [stream]
+[info] i  hosting: 127.0.0.1 - - [20/May/2025:15:28:01 +0000] "GET /api/auth/user HTTP/1.1" 404 62 "http://127.0.0.1:5002/list-property" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36" {"metadata":{"emulator":{"name":"hosting"},"message":"127.0.0.1 - - [20/May/2025:15:28:01 +0000] \"GET /api/auth/user HTTP/1.1\" 404 62 \"http://127.0.0.1:5002/list-property\" \"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36\""}}
+[info] i  hosting: 127.0.0.1 - - [20/May/2025:15:28:01 +0000] "GET /favicon.ico HTTP/1.1" 304 - "http://127.0.0.1:5002/list-property" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36" {"metadata":{"emulator":{"name":"hosting"},"message":"127.0.0.1 - - [20/May/2025:15:28:01 +0000] \"GET /favicon.ico HTTP/1.1\" 304 - \"http://127.0.0.1:5002/list-property\" \"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36\""}}
+[info] [hosting] Rewriting /api/login to http://127.0.0.1:5001/start341-portfolio-showcase/us-central1/api for local Function us-central1/api
+[debug] [2025-05-20T15:28:02.678Z] >>> [apiv2][query] GET http://127.0.0.1:5001/start341-portfolio-showcase/us-central1/api/api/login 
+[debug] [2025-05-20T15:28:02.680Z] [work-queue] {"queuedWork":["/start341-portfolio-showcase/us-central1/api/api/login-2025-05-20T15:28:02.680Z"],"queueLength":1,"runningWork":[],"workRunningCount":0}
+[debug] [2025-05-20T15:28:02.680Z] [work-queue] {"queuedWork":[],"queueLength":0,"runningWork":["/start341-portfolio-showcase/us-central1/api/api/login-2025-05-20T15:28:02.680Z"],"workRunningCount":1}
+[debug] [2025-05-20T15:28:02.680Z] [work-queue] {"queuedWork":[],"queueLength":0,"runningWork":[],"workRunningCount":0}
+[debug] [2025-05-20T15:28:02.681Z] <<< [apiv2][status] GET http://127.0.0.1:5001/start341-portfolio-showcase/us-central1/api/api/login 404
+[debug] [2025-05-20T15:28:02.681Z] <<< [apiv2][body] GET http://127.0.0.1:5001/start341-portfolio-showcase/us-central1/api/api/login [stream]
+[info] i  hosting: 127.0.0.1 - - [20/May/2025:15:28:02 +0000] "GET /api/login HTTP/1.1" 404 62 "http://127.0.0.1:5002/list-property" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36" {"metadata":{"emulator":{"name":"hosting"},"message":"127.0.0.1 - - [20/May/2025:15:28:02 +0000] \"GET /api/login HTTP/1.1\" 404 62 \"http://127.0.0.1:5002/list-property\" \"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36\""}}
