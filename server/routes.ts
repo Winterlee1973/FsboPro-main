@@ -36,6 +36,34 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Login route
+  app.post('/api/auth/login', async (req, res) => {
+    try {
+      const { email, password } = req.body;
+      // TODO: Implement actual login logic using firebaseAuth
+      console.log('Login attempt received:', { email, password });
+      // Placeholder response
+      res.status(200).json({ message: 'Login successful (placeholder)' });
+    } catch (error) {
+      console.error("Error during login:", error);
+      res.status(500).json({ message: "Failed to login" });
+    }
+  });
+
+  // Register route
+  app.post('/api/auth/register', async (req, res) => {
+    try {
+      const { email, password } = req.body;
+      // TODO: Implement actual registration logic using firebaseAuth
+      console.log('Registration attempt received:', { email, password });
+      // Placeholder response
+      res.status(200).json({ message: 'Registration successful (placeholder)' });
+    } catch (error) {
+      console.error("Error during registration:", error);
+      res.status(500).json({ message: "Failed to register" });
+    }
+  });
+
   // Update user type (buyer/seller/admin)
   app.post('/api/users/type', isAuthenticated, async (req: any, res) => {
     try {

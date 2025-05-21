@@ -1,8 +1,9 @@
-# FsboPro – Firebase-Native Edition 🚀
+# FsboPro – Supabase + Firebase Hosting Edition 🚀
 
-A full-stack “For Sale By Owner” prototype built with  
-**Next.js 15 (static export) + Tailwind CSS** on the front end,  
-**Express (TypeScript) running in Firebase Cloud Functions** on the back end.
+A full-stack “For Sale By Owner” prototype built with
+**Next.js 15 (static export) + Tailwind CSS** on the front end,
+**Express (TypeScript) running in Firebase Cloud Functions** on the back end,
+using **Supabase for Authentication and Database**.
 
 ---
 
@@ -13,7 +14,7 @@ A full-stack “For Sale By Owner” prototype built with
 ├── client/               # Next.js front-end
 │   ├── src/
 │   └── next.config.ts
-├── functions/            # Cloud Functions (Express API)
+├── functions/            # Cloud Functions (Express API) - Can be used for backend logic interacting with Supabase
 │   ├── src/index.ts
 │   └── tsconfig.json
 ├── firebase.json         # Hosting + Functions rewrite rules
@@ -26,7 +27,7 @@ A full-stack “For Sale By Owner” prototype built with
 ## 1  Set up locally
 
 ```bash
-# prerequisites: Node 18+, pnpm, Firebase CLI
+# prerequisites: Node 18+, pnpm, Firebase CLI, Supabase project
 npm  i -g firebase-tools
 pnpm --version   # make sure it’s installed
 firebase login   # once
@@ -40,7 +41,7 @@ cd functions
 pnpm install           # Cloud Functions
 cd ..
 
-# create env file (populate your Firebase keys)
+# create env file (populate your Supabase keys)
 cp .env.example .env.local
 ```
 
@@ -54,7 +55,7 @@ pnpm run build         # outputs client/out (exported)
 firebase emulators:start --only hosting,functions
 ```
 
-* **Front-end preview:** <http://localhost:5000>  
+* **Front-end preview:** <http://localhost:5000>
 * **API preview:**      <http://localhost:5001/api/...>
 
 Changes you make in **client/** auto-reload thanks to the emulator file-watcher.
@@ -85,12 +86,11 @@ That URL is live.
 
 ## 3  Environment variables
 
-Only Firebase-style keys remain:
+Add your Supabase project URL and Anon Key to `.env.local`:
 
 ```
-NEXT_PUBLIC_FIREBASE_API_KEY=
-NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=
-NEXT_PUBLIC_FIREBASE_PROJECT_ID=
+VITE_SUPABASE_URL=YOUR_SUPABASE_URL
+VITE_SUPABASE_ANON_KEY=YOUR_SUPABASE_ANON_KEY
 ```
 
 Copy `.env.example` → `.env.local`, fill them in, and **do not commit** `.env.local`.
@@ -99,11 +99,8 @@ Copy `.env.example` → `.env.local`, fill them in, and **do not commit** `.env.
 
 ## 4  Next steps
 
-* **Auth** – swap the stub in `functions/src/index.ts` for real `firebase-admin` ID-token checks.  
-* **Database** – currently reads/writes Firestore; switch to Cloud SQL Postgres if you need relational.  
-* **Cloud Run** – if you ever outgrow Functions, add a Dockerfile and deploy via `gcloud run deploy`.
+* **Supabase Configuration** - Replace the placeholder values in `.env.local` with your actual Supabase project URL and Anon Key.
+* **Backend Integration** - Update backend functions in `functions/src/` to interact with your Supabase database and authentication as needed.
+* **Frontend Enhancements** - Improve the UI and user experience for login and registration in `client/src/pages/LoginPage.tsx`.
 
 Happy shipping! 🏡
-
-
-DATABASE_URL=postgresql://postgres:wXz8wMCwjTztbfe0@db.biwdyefuevbznzrjgymj.supabase.co:5432/postgres

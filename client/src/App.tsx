@@ -1,3 +1,4 @@
+import LoginPage from "@/pages/LoginPage";
 import { Switch, Route, useLocation } from "wouter";
 import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
@@ -50,6 +51,7 @@ function Router() {
           <Route path="/how-it-works" component={HowItWorksPage} />
           <Route path="/register" component={RegisterSelectionPage} />
           <Route path="/properties" component={PropertiesPage} />
+          <Route path="/login" component={LoginPage} />
           {/* Property detail page contains contact/bidding functionality */}
           <Route component={NotFound} />
         </Switch>
