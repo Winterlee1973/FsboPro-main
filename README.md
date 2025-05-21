@@ -104,3 +104,6 @@ Copy `.env.example` → `.env.local`, fill them in, and **do not commit** `.env.
 * **Cloud Run** – if you ever outgrow Functions, add a Dockerfile and deploy via `gcloud run deploy`.
 
 Happy shipping! 🏡
+
+
+DATABASE_URL=postgresql://postgres:wXz8wMCwjTztbfe0@db.biwdyefuevbznzrjgymj.supabase.co:5432/postgres
