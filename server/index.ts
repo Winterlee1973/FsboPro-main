@@ -1,9 +1,11 @@
 import dotenv from 'dotenv';
 dotenv.config({ path: '.env.local' });
 
-import express, { type Request, Response, NextFunction } from "express";
-
+console.log("SUPABASE_URL from env:", process.env.SUPABASE_URL);
+console.log("SUPABASE_ANON_KEY from env:", process.env.SUPABASE_ANON_KEY);
 console.log("DATABASE_URL from env:", process.env.DATABASE_URL);
+
+import express, { type Request, Response, NextFunction } from "express";
 import { registerRoutes } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";
 

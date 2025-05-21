@@ -40,11 +40,12 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.post('/api/auth/login', async (req, res) => {
     try {
       const { email, password } = req.body;
-      // TODO: Implement actual login logic using firebaseAuth
+      // Note: Supabase authentication (login) is typically handled client-side.
+      // This server endpoint is a placeholder and should not be used for direct
+      // email/password login in a production environment.
       console.log('Login attempt received:', { email, password });
-      // Placeholder response
-      res.status(200).json({ message: 'Login successful (placeholder)' });
-    } catch (error) {
+      res.status(200).json({ message: 'Login endpoint reached (placeholder - client-side auth required)' });
+    } catch (error: any) {
       console.error("Error during login:", error);
       res.status(500).json({ message: "Failed to login" });
     }
@@ -54,11 +55,12 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.post('/api/auth/register', async (req, res) => {
     try {
       const { email, password } = req.body;
-      // TODO: Implement actual registration logic using firebaseAuth
+      // Note: Supabase authentication (registration) is typically handled client-side.
+      // This server endpoint is a placeholder and should not be used for direct
+      // email/password registration in a production environment.
       console.log('Registration attempt received:', { email, password });
-      // Placeholder response
-      res.status(200).json({ message: 'Registration successful (placeholder)' });
-    } catch (error) {
+      res.status(200).json({ message: 'Registration endpoint reached (placeholder - client-side auth required)' });
+    } catch (error: any) {
       console.error("Error during registration:", error);
       res.status(500).json({ message: "Failed to register" });
     }

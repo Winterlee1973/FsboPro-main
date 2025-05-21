@@ -1,9 +1,9 @@
-# FsboPro – Supabase + Firebase Hosting Edition 🚀
+# FsboPro – Supabase Auth & Database + Firebase Hosting Edition 🚀
 
 A full-stack “For Sale By Owner” prototype built with
 **Next.js 15 (static export) + Tailwind CSS** on the front end,
 **Express (TypeScript) running in Firebase Cloud Functions** on the back end,
-using **Supabase for Authentication and Database**.
+using **Supabase for Authentication and Database**. Firebase is used for hosting and running the backend functions.
 
 ---
 
@@ -100,7 +100,7 @@ Copy `.env.example` → `.env.local`, fill them in, and **do not commit** `.env.
 ## 4  Next steps
 
 * **Supabase Configuration** - Replace the placeholder values in `.env.local` with your actual Supabase project URL and Anon Key.
-* **Backend Integration** - Update backend functions in `functions/src/` to interact with your Supabase database and authentication as needed.
-* **Frontend Enhancements** - Improve the UI and user experience for login and registration in `client/src/pages/LoginPage.tsx`.
+* **Backend Integration** - The backend is configured to use Supabase for authentication verification. Update backend functions in `functions/src/` to interact with your Supabase database as needed.
+* **Frontend Enhancements** - Implement the login and registration logic on the client-side using the Supabase JS SDK in `client/src/pages/LoginPage.tsx` and other relevant components.
 
 Happy shipping! 🏡
