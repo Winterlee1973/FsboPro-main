@@ -6,8 +6,17 @@ import {
   messages,
   offers,
   premiumTransactions,
+  // Zod schemas (though not explicitly used in this file, good to keep for consistency if other files import them this way)
+  // upsertUserSchema, // Example, if needed elsewhere
+  // insertPropertySchema, // Example, if needed elsewhere
+  // insertPropertyImageSchema, // Example, if needed elsewhere
+  // insertPropertyFeatureSchema, // Example, if needed elsewhere
+  // insertMessageSchema, // Example, if needed elsewhere
+  // insertOfferSchema, // Example, if needed elsewhere
+  // insertPremiumTransactionSchema, // Example, if needed elsewhere
+  // Explicit Drizzle types
   type User,
-  type UpsertUser,
+  type InsertUser, // Renamed from UpsertUser to match schema.ts convention
   type Property,
   type InsertProperty,
   type PropertyImage,
@@ -20,18 +29,16 @@ import {
   type InsertOffer,
   type PremiumTransaction,
   type InsertPremiumTransaction
-} from "../functions/src/shared/schema";
+} from "@shared/schema";
 import { db } from "./db";
-import { eq, and, desc, like, inArray, or, gte, lte, isNull } from "drizzle-orm";
-import { db } from "./db";
-import { eq, and, desc, like, inArray, or, gte, lte, isNull } from "drizzle-orm";
+import { eq, and, desc, like, inArray, or, gte, lte, isNull, sql } from "drizzle-orm"; // Added sql here for completeness, though not strictly in original duplicates
 
 // Interface for storage operations
 export interface IStorage {
   // User operations
   getUser(id: string): Promise<User | undefined>;
   getUserByEmail(email: string): Promise<User | undefined>;
-  upsertUser(user: UpsertUser): Promise<User>;
+  upsertUser(user: InsertUser): Promise<User>; // Changed UpsertUser to InsertUser
   updateUserType(id: string, userType: string): Promise<User | undefined>;
   updateStripeCustomerId(userId: string, customerId: string): Promise<User>;
   
@@ -86,14 +93,20 @@ export class DatabaseStorage implements IStorage {
     return user;
   }
 
-  async upsertUser(userData: UpsertUser): Promise<User> {
+  async upsertUser(userData: InsertUser): Promise<User> { // Changed UpsertUser to InsertUser
     const [user] = await db
       .insert(users)
       .values(userData)
       .onConflictDoUpdate({
         target: users.id,
         set: {
-          ...userData,
+          // ...userData, // Spreading all fields might not be ideal if some shouldn't be updated on conflict
+          email: userData.email,
+          firstName: userData.firstName,
+          lastName: userData.lastName,
+          profileImageUrl: userData.profileImageUrl,
+          userType: userData.userType,
+          stripeCustomerId: userData.stripeCustomerId,
           updatedAt: new Date(),
         },
       })
@@ -160,6 +173,7 @@ export class DatabaseStorage implements IStorage {
     const result = await db
       .delete(properties)
       .where(eq(properties.id, id));
+    // @ts-ignore TODO: Fix drizzle-orm returning result.rowCount as number | null
     return result.rowCount > 0;
   }
 
@@ -183,7 +197,7 @@ export class DatabaseStorage implements IStorage {
           like(properties.city, `%${query.location}%`),
           like(properties.state, `%${query.location}%`),
           like(properties.zipCode, `%${query.location}%`)
-        )
+        )! // Added non-null assertion operator as 'or' can return undefined if no args
       );
     }
     
@@ -234,11 +248,10 @@ export class DatabaseStorage implements IStorage {
   }
 
   async incrementPropertyViews(id: number): Promise<void> {
+    // Corrected the increment operation
     await db
       .update(properties)
-      .set({
-        viewCount: properties.viewCount + 1,
-      })
+      .set({ viewCount: sql`${properties.viewCount} + 1` })
       .where(eq(properties.id, id));
   }
 
@@ -280,6 +293,7 @@ export class DatabaseStorage implements IStorage {
     const result = await db
       .delete(propertyImages)
       .where(eq(propertyImages.id, id));
+    // @ts-ignore TODO: Fix drizzle-orm returning result.rowCount as number | null
     return result.rowCount > 0;
   }
 
@@ -303,6 +317,7 @@ export class DatabaseStorage implements IStorage {
     const result = await db
       .delete(propertyFeatures)
       .where(eq(propertyFeatures.id, id));
+    // @ts-ignore TODO: Fix drizzle-orm returning result.rowCount as number | null
     return result.rowCount > 0;
   }
 
@@ -323,7 +338,7 @@ export class DatabaseStorage implements IStorage {
         or(
           eq(messages.toUserId, userId),
           eq(messages.fromUserId, userId)
-        )
+        )! // Added non-null assertion operator
       )
       .orderBy(desc(messages.createdAt));
   }
@@ -351,13 +366,13 @@ export class DatabaseStorage implements IStorage {
             and(
               eq(messages.fromUserId, user1Id),
               eq(messages.toUserId, user2Id)
-            ),
+            )!, // Added non-null assertion operator
             and(
               eq(messages.fromUserId, user2Id),
               eq(messages.toUserId, user1Id)
-            )
-          )
-        )
+            )! // Added non-null assertion operator
+          )! // Added non-null assertion operator
+        )! // Added non-null assertion operator
       )
       .orderBy(messages.createdAt);
   }

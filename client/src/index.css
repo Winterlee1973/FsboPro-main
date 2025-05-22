@@ -99,10 +99,6 @@
   @apply bg-secondary text-white;
 }
 
-.hero-overlay {
-  @apply absolute inset-0 z-0 bg-gradient-to-t from-black/60 to-black/30;
-}
-
 .premium-gradient {
   @apply bg-gradient-to-r from-secondary to-primary;
 }

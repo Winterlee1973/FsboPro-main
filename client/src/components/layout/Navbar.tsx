@@ -24,12 +24,15 @@ export function Navbar() {
 
   // Check if link is active
   const isActive = (path: string) => {
+    // Special case for the "Buy" link on the home page
+    if (path === "/#featured-properties" && location === "/") {
+      return "border-b-2 border-blue-500 text-blue-500 font-semibold";
+    }
     return location === path ? "border-b-2 border-blue-500 text-blue-500 font-semibold" : "text-gray-600 hover:text-blue-500";
   };
 
   // Links for navigation
   const links = [
-    { title: "Home", path: "/" },
     { title: "Buy", path: "/#featured-properties" },
     { title: "Sell", path: "/list-property" },
     { title: "Properties", path: "/property/11743" },

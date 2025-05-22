@@ -11,59 +11,53 @@ export function HeroSection() {
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
     if (searchQuery.trim()) {
-      // Check if search query is a property ID (a number)
       const propertyId = parseInt(searchQuery.trim());
       if (!isNaN(propertyId)) {
-        // If it's a number, navigate to the property detail page
         navigate(`/property/${propertyId}`);
       } else {
-        // Otherwise, direct to featured properties section
-        navigate(`/#featured-properties`);
+        // If not a number, perhaps we show an error or do nothing,
+        // for now, let's keep it simple and assume valid ID for direct navigation
+        // or navigate to a search results page if that was the intent for non-ID searches.
+        // For this redesign, we're focusing on ID search.
+        console.warn("Search query is not a valid Property ID:", searchQuery);
+        // Optionally, navigate to a generic search page:
+        // navigate(`/search?q=${encodeURIComponent(searchQuery)}`);
       }
     }
   };
 
   return (
-    <div className="relative bg-secondary h-[550px] overflow-hidden">
-      {/* Background image */}
-      <div className="absolute inset-0 z-0">
-        <img
-          src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2075&h=1000"
-          alt="Modern luxury home"
-          className="object-cover w-full h-full opacity-60"
-        />
-        <div className="hero-overlay"></div>
-      </div>
-      
+    <div className="bg-gray-100 py-24">
       {/* Content */}
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex flex-col justify-center z-10">
-        <div className="max-w-xl">
-          <h1 className="text-4xl font-bold text-white mb-4">
-            Find Your Dream Home Directly from Owners
+      <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div className="w-full">
+          <h1 className="text-5xl font-bold text-gray-800 mb-6">
+            Search by Property ID
           </h1>
-          <p className="text-xl text-white mb-6">
-            Browse exclusive listings, connect with sellers, and discover your perfect property without agent fees.
+          <p className="text-lg text-gray-600 mb-10">
+            Enter a Property ID to directly view its details.
           </p>
           
           {/* Search Bar */}
-          <form onSubmit={handleSearch} className="mb-8 relative">
+          <form onSubmit={handleSearch} className="mb-8 max-w-lg mx-auto">
             <div className="flex">
               <Input
                 type="text"
-                placeholder="Search by Property ID or Address"
-                className="w-full h-12 px-4 pr-12 rounded-l-md text-base focus:ring-2 focus:ring-blue-500"
+                placeholder="Enter Property ID"
+                className="w-full h-14 px-5 pr-16 rounded-l-lg text-lg border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
               />
               <Button 
                 type="submit"
-                className="bg-blue-600 hover:bg-blue-700 text-white h-12 px-4 rounded-r-md"
+                className="bg-blue-600 hover:bg-blue-700 text-white h-14 px-6 rounded-r-lg"
               >
-                <Search className="w-5 h-5" />
+                <Search className="w-6 h-6" />
               </Button>
             </div>
           </form>
           
+          {/* 
           <div className="flex flex-col sm:flex-row gap-4">
             <Link href="/#featured-properties">
               <Button
@@ -81,7 +75,8 @@ export function HeroSection() {
                 View Sample Property
               </Button>
             </Link>
-          </div>
+          </div> 
+          */}
         </div>
       </div>
     </div>
