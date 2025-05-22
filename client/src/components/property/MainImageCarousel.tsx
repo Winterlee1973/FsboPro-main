@@ -10,7 +10,7 @@ import {
 // import { Card, CardContent } from "@/components/ui/card";
 
 interface ImageObject {
-  imageUrl: string;
+  url: string;
   caption?: string;
 }
 
@@ -43,7 +43,7 @@ export function MainImageCarousel({ images }: MainImageCarouselProps) {
             <div className="p-0"> {/* Removed padding for edge-to-edge image */}
               {/* Using a simple div wrapper for the image for now. Card can be added if complex content is needed. */}
               <img
-                src={image.imageUrl}
+                src={image.url}
                 alt={image.caption || `Property image ${index + 1}`}
                 className="w-full h-[400px] md:h-[500px] object-cover rounded-md" // Responsive height and ensure rounding
               />

@@ -58,7 +58,11 @@ export default function PropertyDetailPage() {
       images.push({ imageUrl: property.featuredImage, caption: "Featured Image" });
     }
     if (additionalImages) {
-      images.push(...additionalImages);
+      const transformedAdditionalImages = additionalImages.map(img => ({
+        imageUrl: img.imageUrl,
+        caption: img.caption ?? undefined, // Convert null caption to undefined
+      }));
+      images.push(...transformedAdditionalImages);
     }
     return images;
   }, [property, additionalImages]);
@@ -163,6 +167,8 @@ export default function PropertyDetailPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="bg-white rounded-xl shadow-lg overflow-hidden">
             <div className="relative">
+              {/* Log allImages to debug why carousel might not be working */}
+              {console.log("allImages for carousel:", allImages)}
               <MainImageCarousel images={allImages} />
               {property.isPremium && (
                 <div className="absolute top-6 left-6 z-10"> {/* Added z-10 */}
@@ -201,7 +207,7 @@ export default function PropertyDetailPage() {
                     {property.address}, {property.city}, {property.state} {property.zipCode}
                   </p>
                   <p className="text-gray-600">
-                    Listed {formatTimeAgo(property.createdAt)} · For sale by owner
+                    Listed {property.createdAt ? formatTimeAgo(property.createdAt) : ''} · For sale by owner
                   </p>
                 </div>
                 <div className="mt-4 md:mt-0 flex flex-col items-start md:items-end">
