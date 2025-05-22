@@ -3,6 +3,7 @@ import { useAuth } from "@/hooks/useAuth";
 import { Button } from "@/components/ui/button";
 import { Home, Bed, Bath, LandPlot, Eye, Heart, Share2, Award } from "lucide-react";
 import { Helmet } from "react-helmet";
+import MainImageCarousel from "@/components/property/MainImageCarousel";
 
 export default function SamplePropertyPage() {
   const [, navigate] = useLocation();
@@ -47,11 +48,6 @@ export default function SamplePropertyPage() {
         id: 4, 
         url: "https://images.unsplash.com/photo-1560185127-6ed189bf02f4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1500&h=800",
         caption: "Master bedroom suite"
-      },
-      {
-        id: 5, 
-        url: "https://images.unsplash.com/photo-1600563438938-a9a27215d8be?ixlib=rb-4.0.3&auto=format&fit=crop&w=1500&h=800",
-        caption: "Outdoor patio and pool"
       }
     ],
     features: [
@@ -91,13 +87,9 @@ export default function SamplePropertyPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="bg-white rounded-xl shadow-lg overflow-hidden">
             <div className="relative">
-              <img
-                src={property.images[0].url}
-                alt={property.title}
-                className="w-full h-96 object-cover"
-              />
+              <MainImageCarousel images={property.images} />
               {property.isPremium && (
-                <div className="absolute top-6 left-6">
+                <div className="absolute top-6 left-6 z-10">
                   <div className="bg-[hsl(var(--premium))] text-white px-3 py-1 rounded-full text-sm font-semibold flex items-center">
                     <Award className="h-4 w-4 mr-1" />
                     Premium Listing
