@@ -1,12 +1,16 @@
 import { pgTable, text, serial, integer, boolean, timestamp, doublePrecision, varchar, jsonb, index, } from "drizzle-orm/pg-core";
 import { createInsertSchema } from "drizzle-zod";
 import { relations } from "drizzle-orm";
+
 // Session storage table for Replit Auth
 export const sessions = pgTable("sessions", {
     sid: varchar("sid").primaryKey(),
     sess: jsonb("sess").notNull(),
     expire: timestamp("expire").notNull(),
 }, (table) => [index("IDX_session_expire").on(table.expire)]);
+export type Session = typeof sessions.$inferSelect;
+export type InsertSession = typeof sessions.$inferInsert;
+
 // Users table
 export const users = pgTable("users", {
     id: varchar("id").primaryKey().notNull(),
@@ -19,6 +23,9 @@ export const users = pgTable("users", {
     createdAt: timestamp("created_at").defaultNow(),
     updatedAt: timestamp("updated_at").defaultNow(),
 });
+export type User = typeof users.$inferSelect;
+export type InsertUser = typeof users.$inferInsert;
+
 // Properties table
 export const properties = pgTable("properties", {
     id: serial("id").primaryKey(),
@@ -45,6 +52,9 @@ export const properties = pgTable("properties", {
     createdAt: timestamp("created_at").defaultNow(),
     updatedAt: timestamp("updated_at").defaultNow(),
 });
+export type Property = typeof properties.$inferSelect;
+export type InsertProperty = typeof properties.$inferInsert;
+
 // Property images table
 export const propertyImages = pgTable("property_images", {
     id: serial("id").primaryKey(),
@@ -56,6 +66,9 @@ export const propertyImages = pgTable("property_images", {
     sortOrder: integer("sort_order").default(0).notNull(),
     createdAt: timestamp("created_at").defaultNow(),
 });
+export type PropertyImage = typeof propertyImages.$inferSelect;
+export type InsertPropertyImage = typeof propertyImages.$inferInsert;
+
 // Property features table
 export const propertyFeatures = pgTable("property_features", {
     id: serial("id").primaryKey(),
@@ -65,6 +78,9 @@ export const propertyFeatures = pgTable("property_features", {
     feature: text("feature").notNull(),
     createdAt: timestamp("created_at").defaultNow(),
 });
+export type PropertyFeature = typeof propertyFeatures.$inferSelect;
+export type InsertPropertyFeature = typeof propertyFeatures.$inferInsert;
+
 // Messages table
 export const messages = pgTable("messages", {
     id: serial("id").primaryKey(),
@@ -81,6 +97,9 @@ export const messages = pgTable("messages", {
     isRead: boolean("is_read").default(false).notNull(),
     createdAt: timestamp("created_at").defaultNow(),
 });
+export type Message = typeof messages.$inferSelect;
+export type InsertMessage = typeof messages.$inferInsert;
+
 // Offers table
 export const offers = pgTable("offers", {
     id: serial("id").primaryKey(),
@@ -96,6 +115,9 @@ export const offers = pgTable("offers", {
     createdAt: timestamp("created_at").defaultNow(),
     updatedAt: timestamp("updated_at").defaultNow(),
 });
+export type Offer = typeof offers.$inferSelect;
+export type InsertOffer = typeof offers.$inferInsert;
+
 // Premium transactions table
 export const premiumTransactions = pgTable("premium_transactions", {
     id: serial("id").primaryKey(),
@@ -110,6 +132,9 @@ export const premiumTransactions = pgTable("premium_transactions", {
     status: text("status").default("completed").notNull(),
     createdAt: timestamp("created_at").defaultNow(),
 });
+export type PremiumTransaction = typeof premiumTransactions.$inferSelect;
+export type InsertPremiumTransaction = typeof premiumTransactions.$inferInsert;
+
 // Define table relations
 export const usersRelations = relations(users, ({ many }) => ({
     properties: many(properties),
@@ -118,6 +143,7 @@ export const usersRelations = relations(users, ({ many }) => ({
     offers: many(offers, { relationName: "buyer" }),
     premiumTransactions: many(premiumTransactions),
 }));
+
 export const propertiesRelations = relations(properties, ({ one, many }) => ({
     owner: one(users, {
         fields: [properties.userId],
@@ -129,6 +155,7 @@ export const propertiesRelations = relations(properties, ({ one, many }) => ({
     offers: many(offers),
     premiumTransaction: many(premiumTransactions),
 }));
+
 export const messagesRelations = relations(messages, ({ one }) => ({
     fromUser: one(users, {
         fields: [messages.fromUserId],
@@ -145,6 +172,7 @@ export const messagesRelations = relations(messages, ({ one }) => ({
         references: [properties.id],
     }),
 }));
+
 export const offersRelations = relations(offers, ({ one }) => ({
     property: one(properties, {
         fields: [offers.propertyId],
@@ -156,6 +184,7 @@ export const offersRelations = relations(offers, ({ one }) => ({
         relationName: "buyer",
     }),
 }));
+
 // ZOD Schemas for validation
 export const upsertUserSchema = createInsertSchema(users);
 export const insertPropertySchema = createInsertSchema(properties).omit({

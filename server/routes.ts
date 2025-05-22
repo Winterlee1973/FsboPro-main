@@ -9,8 +9,15 @@ import {
   insertPropertyImageSchema, 
   insertPropertyFeatureSchema,
   insertMessageSchema,
-  insertOfferSchema
-} from "../functions/src/shared/schema";
+  insertOfferSchema,
+  type User,
+  type Property,
+  type PropertyImage,
+  type PropertyFeature,
+  type Message,
+  type Offer,
+  type PremiumTransaction
+} from "@shared/schema";
 
 // Initialize Stripe if secret key is available
 let stripe: Stripe | undefined;
