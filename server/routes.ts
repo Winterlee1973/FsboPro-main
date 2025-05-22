@@ -1,7 +1,7 @@
 import type { Express, Request } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
-import { setupAuth, isAuthenticated } from "./firebaseAuth";
+import { setupAuth, isAuthenticated } from "./supabaseAuth";
 import Stripe from "stripe";
 import { z } from "zod";
 import { 
