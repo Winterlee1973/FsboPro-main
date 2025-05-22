@@ -26,12 +26,12 @@ export default function HomePage() {
       </Helmet>
       
       <HeroSection />
-      <SearchSection />
-      <FeaturedListings />
-      <PremiumPackage />
-      <HowItWorks />
-      <TestimonialsSection />
-      <CTASection />
+      {/* <SearchSection /> */}
+      {/* <FeaturedListings /> */}
+      {/* <PremiumPackage /> */}
+      {/* <HowItWorks /> */}
+      {/* <TestimonialsSection /> */}
+      {/* <CTASection /> */}
     </>
   );
 }
