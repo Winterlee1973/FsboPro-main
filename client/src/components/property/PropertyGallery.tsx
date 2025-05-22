@@ -1,50 +1,43 @@
-import { useState } from "react";
-import { useQuery } from "@tanstack/react-query";
+import { useState, useEffect } from "react"; // Added useEffect
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { type PropertyImage } from "@shared/schema";
-import { Skeleton } from "@/components/ui/skeleton";
+// import { type PropertyImage } from "@shared/schema"; // No longer needed directly
+// import { Skeleton } from "@/components/ui/skeleton"; // No longer needed
 
-interface PropertyGalleryProps {
-  propertyId: number;
-  featuredImage?: string;
+// Define ImageObject locally, or import from a shared types file
+interface ImageObject {
+  imageUrl: string;
+  caption?: string;
 }
 
-export function PropertyGallery({ propertyId, featuredImage }: PropertyGalleryProps) {
-  const [showFullGallery, setShowFullGallery] = useState(false);
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+interface PropertyGalleryProps {
+  allImages: ImageObject[];
+  // To control the modal from outside, we'll need a way to set showFullGallery.
+  // This will be handled in a subsequent task. For now, we'll add a prop
+  // to externally control its visibility and initial image.
+  isOpen: boolean;
+  onClose: () => void;
+  initialIndex?: number;
+}
+
+export function PropertyGallery({ allImages, isOpen, onClose, initialIndex = 0 }: PropertyGalleryProps) {
+  const [showFullGallery, setShowFullGallery] = useState(isOpen);
+  const [currentImageIndex, setCurrentImageIndex] = useState(initialIndex);
+
+  useEffect(() => {
+    setShowFullGallery(isOpen);
+  }, [isOpen]);
+
+  useEffect(() => {
+    if (isOpen) {
+      setCurrentImageIndex(initialIndex);
+    }
+  }, [isOpen, initialIndex]);
   
-  const { data: images, isLoading } = useQuery<PropertyImage[]>({
-    queryKey: [`/api/properties/${propertyId}/images`],
-    enabled: !!propertyId,
-  });
-  
-  // Combine featured image with other images
-  const allImages = [
-    ...(featuredImage ? [{ imageUrl: featuredImage, caption: 'Featured Image' }] : []),
-    ...(images || [])
-  ];
-  
-  if (isLoading) {
-    return (
-      <div>
-        <Skeleton className="w-full h-96 rounded-lg mb-4" />
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          {[...Array(4)].map((_, i) => (
-            <Skeleton key={i} className="h-48 w-full rounded-lg" />
-          ))}
-        </div>
-      </div>
-    );
-  }
-  
-  if (!allImages.length) {
-    return (
-      <div className="bg-gray-100 rounded-lg h-96 flex items-center justify-center">
-        <p className="text-gray-500">No images available for this property</p>
-      </div>
-    );
+  // Early return if no images are provided, though PropertyDetailPage should ideally handle this.
+  if (!allImages || allImages.length === 0) {
+    return null; 
   }
   
   const handleNavigate = (direction: 'prev' | 'next') => {
@@ -59,40 +52,9 @@ export function PropertyGallery({ propertyId, featuredImage }: PropertyGalleryPr
     }
   };
   
-  // Gallery grid view
-  const galleryGrid = (
-    <>
-      <h2 className="text-2xl font-bold text-secondary mb-4">Photo Gallery</h2>
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-        {allImages.slice(0, 4).map((image, index) => (
-          <img 
-            key={index}
-            src={image.imageUrl} 
-            alt={image.caption || `Property image ${index + 1}`}
-            className="rounded-lg object-cover h-48 w-full cursor-pointer hover:opacity-90 transition"
-            onClick={() => {
-              setCurrentImageIndex(index);
-              setShowFullGallery(true);
-            }}
-          />
-        ))}
-      </div>
-      {allImages.length > 4 && (
-        <div className="mt-4 text-center">
-          <Button 
-            variant="link"
-            onClick={() => setShowFullGallery(true)}
-          >
-            View All {allImages.length} Photos
-          </Button>
-        </div>
-      )}
-    </>
-  );
-  
   // Fullscreen gallery
   const fullGallery = (
-    <div className="fixed inset-0 bg-black bg-opacity-90 z-50 flex flex-col">
+    <div className="fixed inset-0 bg-black bg-opacity-90 z-[100] flex flex-col"> {/* Increased z-index */}
       <div className="flex justify-between p-4">
         <div className="text-white text-sm">
           {currentImageIndex + 1} / {allImages.length}
@@ -101,7 +63,10 @@ export function PropertyGallery({ propertyId, featuredImage }: PropertyGalleryPr
           variant="ghost" 
           size="icon" 
           className="text-white" 
-          onClick={() => setShowFullGallery(false)}
+          onClick={() => {
+            setShowFullGallery(false);
+            onClose(); // Call the onClose prop
+          }}
         >
           <X className="h-6 w-6" />
         </Button>
@@ -153,9 +118,8 @@ export function PropertyGallery({ propertyId, featuredImage }: PropertyGalleryPr
   );
 
   return (
-    <div className="border-t border-gray-200 pt-8 mb-8">
-      {galleryGrid}
+    <>
       {showFullGallery && fullGallery}
-    </div>
+    </>
   );
 }

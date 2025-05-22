@@ -1,9 +1,10 @@
-import { useEffect } from "react";
+import { useEffect, useMemo, useState } from "react"; // Added useState
 import { useParams, useLocation } from "wouter";
 import { useQuery } from "@tanstack/react-query";
 import { useAuth } from "@/hooks/useAuth";
-import { type Property, type User } from "@shared/schema";
+import { type Property, type User, type PropertyImage } from "@shared/schema";
 import { PremiumBadge } from "@/components/common/PremiumBadge";
+import { MainImageCarousel } from "@/components/property/MainImageCarousel"; // Added import
 import { PropertyGallery } from "@/components/property/PropertyGallery";
 import { PropertyFeatures } from "@/components/property/PropertyFeatures";
 import { SubmitOffer } from "@/components/property/SubmitOffer";
@@ -29,7 +30,7 @@ export default function PropertyDetailPage() {
     queryKey: [`/api/properties/${propertyId}`],
     enabled: !isNaN(propertyId),
   });
-  
+
   // Fetch seller information if property is loaded
   const {
     data: seller,
@@ -38,21 +39,58 @@ export default function PropertyDetailPage() {
     queryKey: [property ? `/api/auth/user/${property.userId}` : null],
     enabled: !!property && !!property.userId,
   });
-  
+
+  // Fetch additional property images
+  const {
+    data: additionalImages,
+    isLoading: areAdditionalImagesLoading,
+    error: additionalImagesError,
+  } = useQuery<PropertyImage[]>({
+    queryKey: [`/api/properties/${propertyId}/images`],
+    enabled: !isNaN(propertyId) && !!property && !!property.id,
+  });
+
+  // Combine featured image and additional images
+  const allImages = useMemo(() => {
+    if (!property) return [];
+    const images = [];
+    if (property.featuredImage) {
+      images.push({ imageUrl: property.featuredImage, caption: "Featured Image" });
+    }
+    if (additionalImages) {
+      images.push(...additionalImages);
+    }
+    return images;
+  }, [property, additionalImages]);
+
   // Redirect if invalid ID
   useEffect(() => {
     if (!isNaN(propertyId) && propertyError) {
       navigate("/not-found");
     }
   }, [propertyId, propertyError, navigate]);
+
+  // State for PropertyGallery modal
+  const [isGalleryModalOpen, setIsGalleryModalOpen] = useState(false);
+  const [selectedImageIndex, setSelectedImageIndex] = useState(0);
+
+  // Placeholder functions to open the modal (will be triggered by MainImageCarousel later)
+  // const openGalleryModal = (index: number) => {
+  //   setSelectedImageIndex(index);
+  //   setIsGalleryModalOpen(true);
+  // };
+
+  const closeGalleryModal = () => {
+    setIsGalleryModalOpen(false);
+  };
   
   // Loading state
-  if (isPropertyLoading) {
+  if (isPropertyLoading || (property && areAdditionalImagesLoading && !additionalImagesError)) {
     return (
       <section className="py-12 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="bg-white rounded-xl shadow-lg overflow-hidden">
-            <Skeleton className="w-full h-96" />
+            <Skeleton className="w-full h-[400px] md:h-[500px]" /> {/* Adjusted skeleton height */}
             <div className="p-6 md:p-8">
               <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-6">
                 <div>
@@ -82,7 +120,7 @@ export default function PropertyDetailPage() {
   }
   
   // Error state
-  if (propertyError || !property) {
+  if (propertyError || !property || additionalImagesError) {
     return (
       <section className="py-12 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -125,21 +163,18 @@ export default function PropertyDetailPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="bg-white rounded-xl shadow-lg overflow-hidden">
             <div className="relative">
-              <img
-                src={property.featuredImage || "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1500&h=600"}
-                alt={property.title}
-                className="w-full h-96 object-cover"
-              />
+              <MainImageCarousel images={allImages} />
               {property.isPremium && (
-                <div className="absolute top-6 left-6">
+                <div className="absolute top-6 left-6 z-10"> {/* Added z-10 */}
                   <PremiumBadge />
                 </div>
               )}
-              <div className="absolute top-6 right-6 flex space-x-3">
+              <div className="absolute top-6 right-6 flex space-x-3 z-10"> {/* Added z-10 */}
                 <Button
                   variant="secondary"
                   size="icon"
                   className="bg-white bg-opacity-90 text-gray-800 rounded-full hover:bg-opacity-100"
+                  // onClick={...} // Add functionality if these buttons are interactive
                 >
                   <Heart className="h-5 w-5" />
                 </Button>
@@ -147,11 +182,14 @@ export default function PropertyDetailPage() {
                   variant="secondary"
                   size="icon"
                   className="bg-white bg-opacity-90 text-gray-800 rounded-full hover:bg-opacity-100"
+                  // onClick={...} // Add functionality
                 >
                   <Share2 className="h-5 w-5" />
                 </Button>
               </div>
             </div>
+            
+            {/* console.log("All images for carousel:", allImages); // For debugging, will remove */}
 
             <div className="p-6 md:p-8">
               <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-6">
@@ -220,9 +258,16 @@ export default function PropertyDetailPage() {
                 </div>
               </div>
 
-              <PropertyGallery 
-                propertyId={property.id}
-                featuredImage={property.featuredImage}
+              {/* PropertyGallery might be removed or modified later. 
+                  If kept, it might consume allImages or a subset.
+                  For now, keeping its props as is, but it currently shows only featured + its own fetch.
+                  This will be addressed when integrating the carousel. 
+              */}
+              <PropertyGallery
+                allImages={allImages}
+                isOpen={isGalleryModalOpen}
+                onClose={closeGalleryModal}
+                initialIndex={selectedImageIndex}
               />
 
               <div className="border-t border-gray-200 pt-8 mb-8">
