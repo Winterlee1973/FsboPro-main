@@ -47,11 +47,6 @@ export function MainImageCarousel({ images }: MainImageCarouselProps) {
                 alt={image.caption || `Property image ${index + 1}`}
                 className="w-full h-[400px] md:h-[500px] object-cover rounded-md" // Responsive height and ensure rounding
               />
-              {image.caption && (
-                <div className="absolute bottom-0 left-0 right-0 p-2 sm:p-4 bg-black bg-opacity-50 text-white text-center text-sm">
-                  {image.caption}
-                </div>
-              )}
             </div>
           </CarouselItem>
         ))}

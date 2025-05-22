@@ -55,13 +55,14 @@ export default function PropertyDetailPage() {
     if (!property) return [];
     const images = [];
     if (property.featuredImage) {
-      images.push({ imageUrl: property.featuredImage, caption: "Featured Image" });
+      images.push({ imageUrl: property.featuredImage, caption: undefined }); // Set featured image caption to undefined and use 'imageUrl'
     }
     if (additionalImages) {
-      const transformedAdditionalImages = additionalImages.map(img => ({
-        imageUrl: img.imageUrl,
-        caption: img.caption ?? undefined, // Convert null caption to undefined
-      }));
+      const transformedAdditionalImages = additionalImages
+        .map(img => ({
+          imageUrl: img.imageUrl, // Use 'imageUrl' instead of 'url'
+          caption: undefined, // Keep caption as undefined or remove if not needed by ImageObject
+        }));
       images.push(...transformedAdditionalImages);
     }
     return images;
@@ -168,7 +169,6 @@ export default function PropertyDetailPage() {
           <div className="bg-white rounded-xl shadow-lg overflow-hidden">
             <div className="relative">
               {/* Log allImages to debug why carousel might not be working */}
-              {console.log("allImages for carousel:", allImages)}
               <MainImageCarousel images={allImages} />
               {property.isPremium && (
                 <div className="absolute top-6 left-6 z-10"> {/* Added z-10 */}
