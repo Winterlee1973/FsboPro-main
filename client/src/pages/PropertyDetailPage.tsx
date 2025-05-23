@@ -55,12 +55,12 @@ export default function PropertyDetailPage() {
     if (!property) return [];
     const images = [];
     if (property.featuredImage) {
-      images.push({ imageUrl: property.featuredImage, caption: undefined }); // Set featured image caption to undefined and use 'imageUrl'
+      images.push({ url: property.featuredImage, caption: undefined }); // Set featured image caption to undefined and use 'url'
     }
     if (additionalImages) {
       const transformedAdditionalImages = additionalImages
         .map(img => ({
-          imageUrl: img.imageUrl, // Use 'imageUrl' instead of 'url'
+          url: img.imageUrl, // Use 'url' instead of 'imageUrl'
           caption: undefined, // Keep caption as undefined or remove if not needed by ImageObject
         }));
       images.push(...transformedAdditionalImages);

@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils";
 
 // Define ImageObject locally, or import from a shared types file
 interface ImageObject {
-  imageUrl: string;
+  url: string;
   caption?: string;
 }
 
@@ -82,7 +82,7 @@ export function PropertyGallery({ allImages, isOpen, onClose, initialIndex = 0 }
         </Button>
         
         <img 
-          src={allImages[currentImageIndex].imageUrl} 
+          src={allImages[currentImageIndex].url}
           alt={allImages[currentImageIndex].caption || `Property image ${currentImageIndex + 1}`}
           className="max-h-[80vh] max-w-[90vw] object-contain"
         />
@@ -103,7 +103,7 @@ export function PropertyGallery({ allImages, isOpen, onClose, initialIndex = 0 }
           {allImages.map((image, index) => (
             <img 
               key={index}
-              src={image.imageUrl} 
+              src={image.url}
               alt={image.caption || `Thumbnail ${index + 1}`}
               className={cn(
                 "h-16 w-24 object-cover rounded cursor-pointer transition",
