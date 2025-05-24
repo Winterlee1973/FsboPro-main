@@ -26,8 +26,11 @@ function Router() {
   const [location, setLocation] = useLocation();
 
   // Scroll to top on route change
+  // Scroll to top on route change, ensuring window is available
   useEffect(() => {
-    window.scrollTo(0, 0);
+    if (typeof window !== 'undefined') {
+      window.scrollTo(0, 0);
+    }
   }, [location]);
 
   // Check if current route is admin dashboard to hide navbar/footer
