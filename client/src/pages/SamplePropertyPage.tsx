@@ -133,7 +133,7 @@ export default function SamplePropertyPage() {
                     <span>{property.viewCount} people viewed this property</span>
                   </div>
                   {!isAuthenticated ? (
-                    <a href="/api/login">
+                    <a href="/login">
                       <Button className="bg-[hsl(var(--premium))] hover:bg-amber-500 text-white">
                         Log In to Contact Seller
                       </Button>
@@ -254,7 +254,7 @@ export default function SamplePropertyPage() {
               <div className="border-t border-gray-200 pt-8 mb-8">
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   {!isAuthenticated ? (
-                    <a href="/api/login">
+                    <a href="/login">
                       <Button size="lg" className="bg-[hsl(var(--premium))] hover:bg-amber-500 text-white">
                         Log In to Contact Seller
                       </Button>

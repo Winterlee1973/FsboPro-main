@@ -89,7 +89,7 @@ export function Navbar() {
                     </>
                   ) : (
                     <>
-                      <DropdownMenuItem onClick={() => window.location.href = "/api/login"}>
+                      <DropdownMenuItem onClick={() => window.location.href = "/login"}>
                         <LogIn className="mr-2 h-4 w-4" /> Log In
                       </DropdownMenuItem>
                       <DropdownMenuItem onClick={() => window.location.href = "/register"}>
@@ -137,7 +137,7 @@ export function Navbar() {
                           <Button 
                             variant="outline" 
                             className="w-full flex justify-center items-center gap-2"
-                            onClick={() => window.location.href = "/api/login"}
+                            onClick={() => window.location.href = "/login"}
                           >
                             <LogIn className="h-4 w-4" /> Log In
                           </Button>

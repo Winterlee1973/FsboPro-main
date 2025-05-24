@@ -89,7 +89,7 @@ export function ListingForm() {
       });
       
       // Redirect to login page
-      window.location.href = "/api/login";
+      window.location.href = "/login";
       return;
     }
     
@@ -138,7 +138,7 @@ export function ListingForm() {
           </CardDescription>
         </CardHeader>
         <CardFooter>
-          <a href="/api/login">
+          <a href="/login">
             <Button>Sign In to Continue</Button>
           </a>
         </CardFooter>

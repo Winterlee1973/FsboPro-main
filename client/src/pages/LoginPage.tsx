@@ -5,7 +5,8 @@ import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useToast } from '@/hooks/use-toast';
-import { supabase } from '../main'; // Import the Supabase client
+import { supabase } from '../lib/supabase'; // Corrected import path
+import { useLocation } from 'wouter'; // Import useLocation from wouter
 
 const LoginPage: React.FC = () => {
   const [loginEmail, setLoginEmail] = useState('');
@@ -14,6 +15,7 @@ const LoginPage: React.FC = () => {
   const [registerPassword, setRegisterPassword] = useState('');
   const [registerConfirmPassword, setRegisterConfirmPassword] = useState('');
   const { toast } = useToast();
+  const [, setLocation] = useLocation(); // Use setLocation from wouter
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -32,7 +34,7 @@ const LoginPage: React.FC = () => {
         title: 'Login Successful',
         description: 'You have been logged in.',
       });
-      // TODO: Redirect or update auth state (e.g., using context or hook)
+      setLocation("/"); // Redirect to home page using setLocation
     } catch (error: any) {
       console.error('Login error:', error);
       toast({

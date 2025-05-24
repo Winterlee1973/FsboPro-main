@@ -102,7 +102,7 @@ export default function MessageCenter() {
           </CardHeader>
           <CardContent className="text-center">
             <p className="mb-4">You need to be signed in to view your messages.</p>
-            <a href="/api/login">
+            <a href="/login">
               <Button>Sign In</Button>
             </a>
           </CardContent>

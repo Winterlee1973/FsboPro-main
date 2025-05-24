@@ -77,7 +77,7 @@ export default function UserDashboard() {
             </CardDescription>
           </CardHeader>
           <CardContent className="flex justify-center">
-            <a href="/api/login">
+            <a href="/login">
               <Button>Sign In</Button>
             </a>
           </CardContent>

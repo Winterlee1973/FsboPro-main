@@ -41,6 +41,7 @@ import {
 import { PremiumBadge } from "@/components/common/PremiumBadge";
 import { useToast } from "@/hooks/use-toast";
 import { apiRequest, queryClient } from "@/lib/queryClient";
+import { supabase } from "@/lib/supabase"; // Import supabase client
 import { Helmet } from "react-helmet";
 import { 
   AlertDialog,
@@ -56,7 +57,7 @@ import {
 
 export default function SellerDashboard() {
   const { isAuthenticated, user, isLoading: isAuthLoading } = useAuth();
-  const [, navigate] = useLocation();
+  const [, setLocation] = useLocation(); // Use setLocation from wouter
   const { toast } = useToast();
   const [activeTab, setActiveTab] = useState("properties");
   
@@ -150,11 +151,11 @@ export default function SellerDashboard() {
           </CardHeader>
           <CardContent className="flex justify-center">
             {!isAuthenticated ? (
-              <a href="/api/login">
+              <Link href="/login">
                 <Button>Sign In</Button>
-              </a>
+              </Link>
             ) : (
-              <Button onClick={() => navigate("/list-property")}>
+              <Button onClick={() => setLocation("/list-property")}>
                 Become a Seller
               </Button>
             )}
@@ -163,7 +164,12 @@ export default function SellerDashboard() {
       </div>
     );
   }
-  
+
+  const handleLogout = async () => {
+    await supabase.auth.signOut();
+    setLocation("/login"); // Redirect to login page after logout
+  };
+
   // Prepare chart data
   const prepareViewsData = () => {
     if (!properties) return [];

@@ -17,10 +17,11 @@ import { AdminTransactionList } from "@/components/admin/AdminTransactionList";
 import { Home, User, DollarSign, Award, Settings, LogOut } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import { Helmet } from "react-helmet";
+import { supabase } from "@/lib/supabase"; // Import supabase client
 
 export default function AdminDashboard() {
   const { isAuthenticated, user, isLoading: isAuthLoading } = useAuth();
-  const [, navigate] = useLocation();
+  const [, setLocation] = useLocation(); // Use setLocation from wouter
   const [activeTab, setActiveTab] = useState("properties");
   
   // Fetch admin statistics
@@ -57,7 +58,7 @@ export default function AdminDashboard() {
             </CardDescription>
           </CardHeader>
           <CardContent className="flex justify-center">
-            <Button onClick={() => navigate("/")}>
+            <Button onClick={() => setLocation("/")}>
               Back to Home
             </Button>
           </CardContent>
@@ -65,7 +66,12 @@ export default function AdminDashboard() {
       </div>
     );
   }
-  
+
+  const handleLogout = async () => {
+    await supabase.auth.signOut();
+    setLocation("/login"); // Redirect to login page after logout
+  };
+
   return (
     <>
       <Helmet>
@@ -114,12 +120,10 @@ export default function AdminDashboard() {
               </div>
             </div>
             <div className="p-4 border-t border-gray-700">
-              <a href="/api/logout">
-                <Button variant="outline" className="w-full bg-transparent border-white text-white hover:bg-white/10 gap-2">
-                  <LogOut className="h-4 w-4" />
-                  Log Out
-                </Button>
-              </a>
+            <Button variant="outline" className="w-full bg-transparent border-white text-white hover:bg-white/10 gap-2" onClick={handleLogout}>
+                <LogOut className="h-4 w-4" />
+                Log Out
+              </Button>
             </div>
           </div>
           
@@ -132,7 +136,7 @@ export default function AdminDashboard() {
                     Dashboard
                   </h1>
                   <div className="md:hidden">
-                    <Button variant="ghost" size="icon">
+                    <Button variant="ghost" size="icon" onClick={handleLogout}>
                       <LogOut className="h-5 w-5" />
                     </Button>
                   </div>

@@ -82,7 +82,7 @@ export default function ContactSellerPage() {
   // Redirect if user not authenticated
   useEffect(() => {
     if (!isAuthenticated) {
-      navigate("/api/login");
+      navigate("/login");
     }
   }, [isAuthenticated, navigate]);
   

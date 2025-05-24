@@ -257,7 +257,7 @@ export function UpgradeToPremium({ property }: UpgradeToPremiumProps) {
           </CardDescription>
         </CardHeader>
         <CardFooter>
-          <a href="/api/login">
+          <a href="/login">
             <Button>Sign In to Continue</Button>
           </a>
         </CardFooter>

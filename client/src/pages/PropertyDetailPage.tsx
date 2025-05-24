@@ -216,7 +216,7 @@ export default function PropertyDetailPage() {
                     <span>{property.viewCount} people viewed this property</span>
                   </div>
                   {!isAuthenticated ? (
-                    <a href="/api/login">
+                    <a href="/login">
                       <Button className="bg-[hsl(var(--premium))] hover:bg-amber-500 text-white">
                         Log In to Contact Seller
                       </Button>
