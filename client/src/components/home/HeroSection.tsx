@@ -5,30 +5,17 @@ import { useState } from "react";
 import { Search } from "lucide-react";
 
 export function HeroSection() {
-  const [searchQuery, setSearchQuery] = useState("");
-  const [, navigate] = useLocation();
+  const [propertyId, setPropertyId] = useState("");
+  const [, setLocation] = useLocation();
 
-  const handleSearch = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (searchQuery.trim()) {
-      const propertyId = parseInt(searchQuery.trim());
-      if (!isNaN(propertyId)) {
-        navigate(`/property/${propertyId}`);
-      } else {
-        // If not a number, perhaps we show an error or do nothing,
-        // for now, let's keep it simple and assume valid ID for direct navigation
-        // or navigate to a search results page if that was the intent for non-ID searches.
-        // For this redesign, we're focusing on ID search.
-        console.warn("Search query is not a valid Property ID:", searchQuery);
-        // Optionally, navigate to a generic search page:
-        // navigate(`/search?q=${encodeURIComponent(searchQuery)}`);
-      }
+  const handleSearch = () => {
+    if (propertyId) {
+      setLocation(`/property/${propertyId}`);
     }
   };
 
   return (
     <div className="bg-gray-100 py-24">
-      {/* Content */}
       <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <div className="w-full">
           <h1 className="text-5xl font-bold text-gray-800 mb-6">
@@ -38,45 +25,26 @@ export function HeroSection() {
             Enter a Property ID to directly view its details.
           </p>
           
-          {/* Search Bar */}
-          <form onSubmit={handleSearch} className="mb-8 max-w-lg mx-auto">
-            <div className="flex">
-              <Input
-                type="text"
-                placeholder="Enter Property ID"
-                className="w-full h-14 px-5 pr-16 rounded-l-lg text-lg border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-              />
-              <Button 
-                type="submit"
-                className="bg-blue-600 hover:bg-blue-700 text-white h-14 px-6 rounded-r-lg"
-              >
-                <Search className="w-6 h-6" />
-              </Button>
-            </div>
-          </form>
-          
-          {/* 
-          <div className="flex flex-col sm:flex-row gap-4">
-            <Link href="/#featured-properties">
-              <Button
-                className="bg-[hsl(var(--premium))] hover:bg-amber-500 text-white font-semibold px-6 py-3"
-                size="lg"
-              >
-                Browse Featured Properties
-              </Button>
-            </Link>
-            <Link href="/property/11743">
-              <Button
-                className="bg-white text-secondary hover:bg-gray-100 font-semibold px-6 py-3"
-                size="lg"
-              >
-                View Sample Property
-              </Button>
-            </Link>
-          </div> 
-          */}
+          <div className="mb-8 max-w-lg mx-auto flex border border-gray-300 rounded-lg overflow-hidden focus-within:ring-2 focus-within:ring-blue-500 focus-within:border-transparent">
+            <Input
+              type="text"
+              className="flex-grow h-14 px-5 text-xl font-bold bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0 rounded-r-none"
+              placeholder="Enter Property ID"
+              value={propertyId}
+              onChange={(e) => setPropertyId(e.target.value)}
+              onKeyPress={(e) => {
+                if (e.key === "Enter") {
+                  handleSearch();
+                }
+              }}
+            />
+            <Button
+              className="bg-blue-600 hover:bg-blue-700 text-white h-14 px-6 rounded-l-none"
+              onClick={handleSearch}
+            >
+              <Search className="h-6 w-6" />
+            </Button>
+          </div>
         </div>
       </div>
     </div>
