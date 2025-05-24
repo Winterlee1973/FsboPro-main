@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Link, useLocation } from "wouter";
 import { useAuth } from "@/hooks/useAuth";
+import { supabase } from "@/main"; // Import Supabase client
 import {
   Sheet,
   SheetContent,
@@ -83,7 +84,10 @@ export function Navbar() {
                   <DropdownMenuSeparator />
                   {isAuthenticated ? (
                     <>
-                      <DropdownMenuItem onClick={() => window.location.href = "/api/logout"}>
+                      <DropdownMenuItem onClick={async () => {
+                        await supabase.auth.signOut();
+                        window.location.href = "/api/logout";
+                      }}>
                         <LogIn className="mr-2 h-4 w-4" /> Log Out
                       </DropdownMenuItem>
                     </>
@@ -128,7 +132,10 @@ export function Navbar() {
                         <Button 
                           variant="outline" 
                           className="w-full flex justify-center items-center gap-2"
-                          onClick={() => window.location.href = "/api/logout"}
+                          onClick={async () => {
+                            await supabase.auth.signOut();
+                            window.location.href = "/api/logout";
+                          }}
                         >
                           <LogIn className="h-4 w-4" /> Log Out
                         </Button>

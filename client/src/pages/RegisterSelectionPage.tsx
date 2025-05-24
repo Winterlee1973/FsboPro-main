@@ -9,7 +9,7 @@ export default function RegisterSelectionPage() {
   const handleSelection = (userType: string) => {
     // Store user selection in local storage and redirect to login
     localStorage.setItem("userTypeSelection", userType);
-    window.location.href = "/login";
+    window.location.href = "/login?tab=register";
   };
 
   return (
@@ -139,7 +139,7 @@ export default function RegisterSelectionPage() {
 
           <div className="text-center mt-12">
             <p className="text-gray-500">
-              Already have an account? <a href="/login" className="text-primary font-medium hover:underline">Log in</a>
+              Already have an account? <a href="/login?tab=login" className="text-primary font-medium hover:underline">Log in</a>
             </p>
           </div>
         </div>

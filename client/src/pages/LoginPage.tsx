@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -15,7 +15,20 @@ const LoginPage: React.FC = () => {
   const [registerPassword, setRegisterPassword] = useState('');
   const [registerConfirmPassword, setRegisterConfirmPassword] = useState('');
   const { toast } = useToast();
-  const [, setLocation] = useLocation(); // Use setLocation from wouter
+  const [location, setLocation] = useLocation(); // Use setLocation from wouter
+
+  // Determine initial tab based on URL query parameter
+  const [activeTab, setActiveTab] = useState('login'); // Default to login initially
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const tab = params.get('tab');
+    if (tab === 'register') {
+      setActiveTab('register');
+    } else {
+      setActiveTab('login');
+    }
+  }, [window.location.search]); // Re-run when URL search params change
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -89,7 +102,7 @@ const LoginPage: React.FC = () => {
           <CardTitle className="text-center">Authentication</CardTitle>
         </CardHeader>
         <CardContent>
-          <Tabs defaultValue="login" className="w-full">
+          <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
             <TabsList className="grid w-full grid-cols-2">
               <TabsTrigger value="login">Login</TabsTrigger>
               <TabsTrigger value="register">Register</TabsTrigger>

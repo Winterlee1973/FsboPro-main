@@ -13,9 +13,11 @@ export function useAuth() {
         setIsLoading(false); // Set loading to false
       }
     );
+    console.log('Auth state listener set up.');
 
     // Check initial auth state
     supabase.auth.getSession().then(({ data: { session } }) => {
+      console.log('Initial session check:', session);
       setUser(session?.user ?? null);
       setIsLoading(false);
     });
