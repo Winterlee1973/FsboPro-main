@@ -21,14 +21,19 @@ const LoginPage: React.FC = () => {
   const [activeTab, setActiveTab] = useState('login'); // Default to login initially
 
   useEffect(() => {
+    console.log('LoginPage: useEffect triggered by window.location.search change');
     const params = new URLSearchParams(window.location.search);
     const tab = params.get('tab');
+    console.log('LoginPage: URL tab parameter:', tab);
     if (tab === 'register') {
       setActiveTab('register');
     } else {
       setActiveTab('login');
     }
+    console.log('LoginPage: activeTab set to:', tab === 'register' ? 'register' : 'login');
   }, [window.location.search]); // Re-run when URL search params change
+
+  console.log('LoginPage: Current activeTab state:', activeTab);
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
