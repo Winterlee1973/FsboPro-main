@@ -34,11 +34,9 @@ export function Navbar() {
 
   // Links for navigation
   const links = [
-    { title: "Buy", path: "/#featured-properties" },
-    { title: "Sell", path: "/list-property" },
-    { title: "Properties", path: "/property/11743" },
-    { title: "How", path: "/how-it-works" },
-    { title: "Pricing", path: "/#premium-package" }
+    { title: "Find A Property", path: "/#featured-properties" },
+    { title: "Sell Your Home", path: "/list-property" },
+    { title: "How It Works", path: "/how-it-works" },
   ];
 
   return (
