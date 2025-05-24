@@ -1,10 +1,10 @@
 import type { Express, Request } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
-import { setupAuth, isAuthenticated } from "./supabaseAuth";
+import { setupAuth, isAuthenticated, supabase } from "./supabaseAuth";
 import Stripe from "stripe";
 import { z } from "zod";
-import { 
+import {
   insertPropertySchema, 
   insertPropertyImageSchema, 
   insertPropertyFeatureSchema,
@@ -70,6 +70,25 @@ export async function registerRoutes(app: Express): Promise<Server> {
     } catch (error: any) {
       console.error("Error during registration:", error);
       res.status(500).json({ message: "Failed to register" });
+    }
+  });
+// Logout route
+  app.get('/api/logout', async (req, res) => {
+    if (!supabase) {
+      console.error("Supabase client not initialized. Cannot log out.");
+      return res.status(500).json({ message: "Logout failed: Supabase client not initialized." });
+    }
+    try {
+      const { error } = await supabase.auth.signOut();
+      if (error) {
+        console.error("Error during logout:", error.message);
+        return res.status(500).json({ message: "Failed to log out", error: error.message });
+      }
+      // Redirect to the home page after successful logout
+      res.redirect('/');
+    } catch (error: any) {
+      console.error("Error during logout:", error.message);
+      res.status(500).json({ message: "Failed to log out", error: error.message });
     }
   });
 

@@ -9,7 +9,7 @@ if (!supabaseUrl || !supabaseAnonKey) {
   console.error("Missing SUPABASE_URL or SUPABASE_ANON_KEY - Supabase auth will be disabled.");
 }
 
-const supabase = supabaseUrl && supabaseAnonKey ? createClient(supabaseUrl, supabaseAnonKey) : undefined;
+export const supabase = supabaseUrl && supabaseAnonKey ? createClient(supabaseUrl, supabaseAnonKey) : undefined;
 
 export async function setupAuth(app: Express) {
   // Middleware to verify Supabase tokens
