@@ -44,14 +44,14 @@ export function Navbar() {
       <div className="w-full mx-auto px-4">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <div className="flex-shrink-0">
+          <div className="flex-shrink-0 flex-1">
             <Link href="/">
               <span className="text-blue-500 font-bold text-3xl">HomeDirect</span>
             </Link>
           </div>
           
           {/* Main Navigation */}
-          <div className="hidden md:flex justify-center flex-1 px-2">
+          <div className="hidden md:flex justify-center flex-1">
             <div className="flex items-center">
               {links.map((link) => (
                 <Link key={link.path} href={link.path}>
@@ -64,7 +64,7 @@ export function Navbar() {
           </div>
           
           {/* Right side buttons */}
-          <div className="hidden md:flex items-center space-x-4">
+          <div className="hidden md:flex items-center space-x-4 flex-1 justify-end">
             <Link href="/list-property">
               <Button className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-6 rounded-lg">
                 List Your Home
