@@ -3,7 +3,7 @@
 pkgs.mkShell {
   buildInputs = with pkgs; [
     nodejs_20
-    pnpm
+    nodePackages.pnpm
     firebase-tools
     typescript
   ];
