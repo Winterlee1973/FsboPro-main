@@ -18,6 +18,8 @@ pkgs.mkShell {
     echo "Entering FsboPro development environment"
     # Optional: Add aliases or other setup commands
     # alias dev="pnpm dev"
+    # Start the frontend development server in the background for web preview
+    cd client && pnpm dev &
   '';
 
   # Optional: Set a specific Node.js version if needed, though nodejs_20 handles this.
