@@ -1,10 +1,10 @@
-{ pkgs ? import <nixpkgs> {} }:
+{ pkgs, ... }: {
+  channel = "stable-24.05";
 
-pkgs.mkShell {
-  buildInputs = with pkgs; [
+  packages = with pkgs; [
     nodejs_20
- nodePackages.pnpm
- firebase-tools
- typescript
- ];
-}
+    nodePackages.pnpm
+    nodePackages.firebase-tools
+    nodePackages.typescript
+    git
+  ];}
