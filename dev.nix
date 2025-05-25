@@ -24,4 +24,12 @@ pkgs.mkShell {
 
   # Optional: Set a specific Node.js version if needed, though nodejs_20 handles this.
   # NODE_OPTIONS = "--max-old-space-size=4096";
+  # Configure web preview for the frontend
+  webPreview = [
+    {
+      name = "FsboPro Frontend";
+      port = 5173; # Default Vite port
+      path = "./client"; # Path to the frontend directory
+    }
+  ];
 }
