@@ -1,4 +1,3 @@
-# .idx/dev.nix
 { pkgs, ... }: {
   channel = "stable-24.05";
 
@@ -13,12 +12,12 @@
     enable = true;
 
     previews = {
-      web = {                    # <- use “web”, not “client”
+      web = {
         command = [
           "pnpm" "run" "dev" "--"
-          "--port" "$PORT"
+          "--port" "$PORT"           # <- key change
           "--host" "0.0.0.0"
-          "--disable-host-check"  # avoids the common “Invalid Host header” error
+          "--disable-host-check"
         ];
         cwd = "client";
         manager = "web";
