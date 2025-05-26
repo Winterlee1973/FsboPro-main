@@ -1,5 +1,5 @@
-# .idx/dev.nix
 { pkgs, ... }: {
+
   channel = "stable-24.05";
 
   packages = with pkgs; [
@@ -13,14 +13,14 @@
     enable = true;
 
     previews = {
-      web = {                    # <- use “web”, not “client”
+      web = {
+        # Studio injects $PORT — using it avoids collisions
         command = [
           "pnpm" "run" "dev" "--"
           "--port" "$PORT"
           "--host" "0.0.0.0"
-          "--disable-host-check"  # avoids the common “Invalid Host header” error
         ];
-        cwd = "client";
+        cwd     = "client";
         manager = "web";
       };
     };
